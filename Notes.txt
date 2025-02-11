@@ -1,0 +1,14 @@
+### Notes 
+
+1. Find a way to make Body.vue the main container
+  -> I want to be able to place all the components in here
+
+2. Set up the main website elements
+  - Users component
+  - Sidebar
+  - Footer
+  - All sections
+
+
+Problem sidebar:
+- When horizontal not all elements fit on it -> ... more option needed
