@@ -9,8 +9,7 @@ const count = ref(0); // XP count
 const level = ref(1); // Initial level
 const showPopup = ref(false); // Controls the visibility of the level-up popup
 const leveledUpTo = ref(0); // Tracks the current level the user leveled up to in one go
-// const avatarImage = ref('https://via.placeholder.com/100'); // Placeholder avatar image
-const avatarImage = ref('https://design.duolingo.com/eacddb00bd84b759ddce.svg');
+//const avatarImage = ref('https://design.duolingo.com/eacddb00bd84b759ddce.svg');
 
 // Method to add XP based on button clicks
 const addXp = (xpAmount) => {
@@ -41,7 +40,7 @@ const closePopup = () => {
   showPopup.value = false;
 };
 
-// Handle drag-and-drop of the new avatar image
+/* // Handle drag-and-drop of the new avatar image
 const handleAvatarDrop = (event) => {
   event.preventDefault();
   const files = event.dataTransfer.files;
@@ -59,7 +58,8 @@ const handleAvatarDrop = (event) => {
 
 const allowDragOver = (event) => {
   event.preventDefault(); // Prevent the default behavior to allow drop
-};
+}; */
+
 </script>
 
 <template>
@@ -71,13 +71,8 @@ const allowDragOver = (event) => {
       <!-- Avatar and User Info -->
       <div class="user-card">
         <!-- Avatar Image with Drag-and-Drop functionality -->
-        <div
-          class="avatar-dropzone"
-          @dragover="allowDragOver"
-          @drop="handleAvatarDrop"
-        >
-          <img :src="avatarImage" alt="User Avatar" class="avatar" />
-          <p>Drag & Drop an image here to change avatar</p>
+        <div class="avatar-dropzone">
+          <img src="https://www.svgrepo.com/show/350417/user-circle.svg" alt="User Avatar" class="avatar" />
         </div>
 
         <div class="progress-info">
@@ -85,10 +80,7 @@ const allowDragOver = (event) => {
           <div class="progress-bar-container">
             <!-- Progress Bar -->
             <div class="progress-bar">
-              <div
-                class="progress"
-                :style="{ width: xpProgress() + '%' }"
-              ></div>
+              <div class="progress" :style="{ width: xpProgress() + '%' }"></div>
             </div>
             <p>Lvl. {{ level + 1 }}</p>
           </div>
@@ -116,10 +108,7 @@ const allowDragOver = (event) => {
 </template>
 
 <style scoped>
-main {
-  /*This is just a test
-  max-width: 1000px;*/
-}
+/*main {This is just a test max-width: 1000px;}*/
 
 .user-card {
   display: flex;
@@ -139,7 +128,7 @@ h1 {
   justify-content: center;
   width: 120px;
   height: 120px;
-  border: 2px dashed #888;
+  /* border: 2px solid #888; */
   border-radius: 50%;
   margin-right: 20px;
   overflow: hidden;
@@ -164,8 +153,7 @@ h1 {
   opacity: 1;
 }
 
-.avatar-dropzone img:not([src="https://via.placeholder.com/100"]) + p
-{
+.avatar-dropzone img:not([src="https://via.placeholder.com/100"])+p {
   display: none;
 }
 
@@ -192,6 +180,7 @@ h1 {
   height: 100%;
   background-color: #4caf50;
   border-radius: 10px;
+  transition: width 300ms ease;
 }
 
 button {
