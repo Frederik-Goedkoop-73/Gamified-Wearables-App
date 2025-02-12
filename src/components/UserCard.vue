@@ -64,7 +64,7 @@ const allowDragOver = (event) => {
 
 <template>
   <main>
-    <div class="body-box grey-border">
+    <div class="grey-border">
       <h1>{{ msg }}</h1>
       <!-- Mustache not necessary-->
 

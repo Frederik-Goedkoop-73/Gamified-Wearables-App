@@ -6,7 +6,7 @@ import { ref } from 'vue';
   <main>
     <h1>Dashboard</h1>
 
-    <div class="body-box grey-border">
+    <div class="grey-border">
       <h2>Health stats</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quasi, aliquid sint, illum quae ut repellendus numquam officia corrupti voluptate vitae consequuntur dolorem nostrum voluptates! Veritatis veniam quo aspernatur similique!
@@ -18,7 +18,7 @@ import { ref } from 'vue';
       />
     </div>
 
-    <div class="body-box grey-border">
+    <div class="grey-border">
       <h2>Quests</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quisquam ipsa unde laboriosam et ratione quasi. Natus saepe aut quae cupiditate quaerat quos perferendis nam, atque quis error aperiam numquam.

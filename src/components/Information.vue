@@ -1,10 +1,18 @@
 <script setup>
 import { ref } from 'vue';
+
+const scrollToBottom = () => {
+    const bottomElement = document.getElementById("bottom");
+    if (bottomElement) {
+        bottomElement.scrollIntoView({ behavior: "smooth" });
+    }
+};
+
 </script>
 
 <template>
     <main>
-        <div class="body-box grey-border">
+        <div class="grey-border">
             <ul class="logo-header">
                 <li class="logo">
                     <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"
@@ -23,29 +31,82 @@ import { ref } from 'vue';
                 </li>
             </ul>
 
-            <h2>Website purpose</h2>
-            <p>A brief overview of the goal of the website (e.g., tracking health data through gamification to increase
-                engagement).</p>
-            <h2>How it works</h2>
-            <p>Explain how users can sync their Fitbit data, participate in quests, and level up based on their
-                activity.</p>
-            <p>Describe the shop, XP system, and any other gamified elements.</p>
-            <h2>User instructions</h2>
-            <p>Provide step-by-step instructions on how to log in, sync data, and interact with the website.</p>
-            <h2>Data privacy</h2>
-            <p>Information about how user data (Fitbit data, login info) is stored, used, and protected.</p>
-            <p>Mention any ethical approvals (like your SMEC approval) and the privacy policy.</p>
-            <h2>Fitbit integration</h2>
-            <p>Explanation of what data is collected from the Fitbit and how it’s used in the gamified system.</p>
-            <h2>Contact information</h2>
-            <p>See footer -> hoverlink to footer</p>
+            <hr>
+
+            <ul class="text-center text-justify content-list">
+                <li>
+                    <h3>Webiste purpose:</h3>
+                    <p>Welcome, this website is a platform designed to analyse Fitbit activity data. The goal of this
+                        study is to observe how the use of this website may influence users’ physical activity over
+                        time. By syncing your Fitbit data with the website, we aim to collect valuable information to
+                        assess the relationship between digital platforms and health engagement.</p>
+                </li>
+
+                <li>
+                    <h3>How it works:</h3>
+                    <ul class="disc-list">
+                        <li><strong>Fitbit Syncing:</strong> Sync your Fitbit data with the website to automatically
+                            track your activity metrics such as steps, calories burned, and other key health indicators.
+                        </li>
+                        <li><strong>Progress Monitoring:</strong> View your activity data over time and monitor your
+                            progress through your personal dashboard.</li>
+                        <li><strong>Data Collection:</strong> Your Fitbit data will be collected for analysis as part of
+                            this study, which will help us evaluate the impact of the website on physical activity.</li>
+                    </ul>
+                </li>
+
+                <li>
+                    <h3>User Instructions:</h3>
+                    <ol>
+                        <li><strong>Log In:</strong> Create an account or log in with your existing credentials.</li>
+                        <li><strong>Sync Fitbit Data:</strong> Navigate to the sync page and connect your Fitbit to
+                            allow the website to access your activity data.</li>
+                        <li><strong>Track Progress:</strong> Use the dashboard to see your tracked fitness metrics and
+                            review how your physical activity evolves over time.</li>
+                    </ol>
+                </li>
+
+                <li>
+                    <h3>Data Privacy:</h3>
+                    <p>We prioritize your privacy. All data collected from your Fitbit and the website is securely
+                        stored and used exclusively for this research study. We adhere to ethical guidelines and data
+                        protection regulations (SMEC approval). For full details on how your data is handled, please
+                        refer to our [Privacy Policy] link.</p>
+                </li>
+
+                <li>
+                    <h3>Contact Information:</h3>
+                    <ul class="disc-list">
+                        <li><strong>Email:</strong> <a
+                                href="mailto:Frederik.Goedkoop@student.uantwerpen.be">Frederik.Goedkoop@student.uantwerpen.be</a>
+                            or <a
+                                href="mailto:frederik.goedkoop@student.kuleuven.be">frederik.goedkoop@student.kuleuven.be</a>
+                        </li>
+                        <li><strong>Phone:</strong> <a href="tel:+32474547625">+32 4 74 54 76 25</a></li>
+                    </ul>
+                    <p>More contact information can be found in the <a href="#" @click.prevent="scrollToBottom">contact
+                            information section</a>.</p>
+                </li>
+
+                <li>
+                    <h3>Fitbit Integration:</h3>
+                    <p>This website integrates with your Fitbit device to gather activity data such as steps, calories
+                        burned, and heart rate. By syncing your Fitbit, we can collect data in real time, which will
+                        contribute to the study's analysis of how digital platforms may impact physical activity levels.
+                    </p>
+                </li>
+
+            </ul>
         </div>
     </main>
 </template>
 
 <style scoped>
-.logo-header {
+ul {
     list-style: none;
+}
+
+.logo-header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -54,17 +115,27 @@ import { ref } from 'vue';
 
 .logo {
     width: 4rem;
-    max-width: 4rem;
+    min-width: 4rem;
     height: 4rem;
+    min-height: 4rem;
 }
 
-h2 {
-    text-align: center;
+h1 {
+    text-align: start;
+    /* Prevent "About" from sticking to right*/
 }
 
-p {
-    text-align: center;
-    text-justify: inter-word;
+.content-list {
+    text-align: start;
+}
+
+.disc-list {
+    list-style: disc;
+}
+
+a {
+    text-decoration: none;
+    color: #df49a6;
 }
 
 </style>

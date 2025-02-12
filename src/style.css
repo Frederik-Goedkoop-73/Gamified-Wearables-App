@@ -36,13 +36,22 @@ main {
 }
 
 .grey-border {
-  border: solid, medium, #35535c;
+  border: solid, medium, var(--bg-primary); 
   border-radius: 10px;
   padding: 10px;
   margin-left: -10px;
   margin-right: -10px;
   margin-bottom: 10px;
   overflow: auto;
+  background-color: rgba(226, 218, 190, 0.5);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-justify: inter-word;
 }
 
 .example-img {
@@ -54,3 +63,8 @@ main {
   border-radius: 10px;
 }
 
+hr {
+  border: none;
+  border-top: 3px solid var(--bg-primary);
+  border-radius: 5px;
+}
