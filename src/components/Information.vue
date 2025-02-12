@@ -11,7 +11,7 @@ const scrollToBottom = () => {
 </script>
 
 <template>
-    <main>
+    <section>
         <div class="grey-border">
             <ul class="logo-header">
                 <li class="logo">
@@ -27,7 +27,7 @@ const scrollToBottom = () => {
                     </svg>
                 </li>
                 <li>
-                    <h1>Information About Website</h1>
+                    <h1>Information About The Website</h1>
                 </li>
             </ul>
 
@@ -68,10 +68,10 @@ const scrollToBottom = () => {
 
                 <li>
                     <h3>Data Privacy:</h3>
-                    <p>We prioritize your privacy. All data collected from your Fitbit and the website is securely
+                    <p>We prioritise your privacy. All data collected from your Fitbit and the website is securely
                         stored and used exclusively for this research study. We adhere to ethical guidelines and data
                         protection regulations (SMEC approval). For full details on how your data is handled, please
-                        refer to our [Privacy Policy] link.</p>
+                        refer to our <a>[Privacy Policy]</a>.</p>
                 </li>
 
                 <li>
@@ -98,7 +98,7 @@ const scrollToBottom = () => {
 
             </ul>
         </div>
-    </main>
+    </section>
 </template>
 
 <style scoped>
@@ -132,10 +132,4 @@ h1 {
 .disc-list {
     list-style: disc;
 }
-
-a {
-    text-decoration: none;
-    color: #df49a6;
-}
-
 </style>

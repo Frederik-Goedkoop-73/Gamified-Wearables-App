@@ -1,69 +1,20 @@
 <script setup>
 import { ref } from 'vue';
+/* import UserProgress from '/home/Frederik-Goedkoop-73/Gamified-Wearables-App/src/composables/UserProgress.js'; */
+import UserProgress from '../composables/UserProgress.js'; /* .. are important here -> long debugging sesch */
+
+
+
+const { count, level, showPopup, leveledUpTo, addXp, totalXpNeededForNextLevel, xpProgress, closePopup } = UserProgress();
 
 defineProps({
   msg: String,
 });
 
-const count = ref(0); // XP count
-const level = ref(1); // Initial level
-const showPopup = ref(false); // Controls the visibility of the level-up popup
-const leveledUpTo = ref(0); // Tracks the current level the user leveled up to in one go
-//const avatarImage = ref('https://design.duolingo.com/eacddb00bd84b759ddce.svg');
-
-// Method to add XP based on button clicks
-const addXp = (xpAmount) => {
-  count.value += xpAmount;
-  updateLevel(); // Call to update level when XP increases
-};
-
-// Method to calculate the total XP needed for the next level
-const totalXpNeededForNextLevel = () => level.value * 10;
-
-// Method to update the player's level based on XP
-const updateLevel = () => {
-  while (count.value >= totalXpNeededForNextLevel()) {
-    count.value -= totalXpNeededForNextLevel(); // Subtract required XP for current level-up
-    level.value++; // Increment level
-    leveledUpTo.value = level.value; // Track the current level-up
-    showPopup.value = true; // Show level-up popup
-  }
-};
-
-// Method to calculate the current progress towards the next level
-const xpProgress = () => {
-  return (count.value / totalXpNeededForNextLevel()) * 100; // Calculate progress percentage
-};
-
-// Method to close the level-up popup
-const closePopup = () => {
-  showPopup.value = false;
-};
-
-/* // Handle drag-and-drop of the new avatar image
-const handleAvatarDrop = (event) => {
-  event.preventDefault();
-  const files = event.dataTransfer.files;
-  if (files.length > 0) {
-    const file = files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      avatarImage.value = e.target.result; // Update the avatar image with the dropped file
-    };
-
-    reader.readAsDataURL(file); // Convert the file to a base64 string
-  }
-};
-
-const allowDragOver = (event) => {
-  event.preventDefault(); // Prevent the default behavior to allow drop
-}; */
-
 </script>
 
 <template>
-  <main>
+  <section>
     <div class="grey-border">
       <h1>{{ msg }}</h1>
       <!-- Mustache not necessary-->
@@ -76,8 +27,9 @@ const allowDragOver = (event) => {
         </div>
 
         <div class="progress-info">
-          <p>Lvl. {{ level }}</p>
+
           <div class="progress-bar-container">
+            <p>Lvl. {{ level }}</p>
             <!-- Progress Bar -->
             <div class="progress-bar">
               <div class="progress" :style="{ width: xpProgress() + '%' }"></div>
@@ -88,7 +40,7 @@ const allowDragOver = (event) => {
         </div>
       </div>
 
-      <!-- XP Buttons -->
+      <!-- XP Buttons --> <!-- Needs shared state management -->
       <div class="card">
         <button type="button" @click="addXp(10)">Gain 10 XP</button>
         <button type="button" @click="addXp(100)">Gain 100 XP</button>
@@ -104,7 +56,7 @@ const allowDragOver = (event) => {
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <style scoped>

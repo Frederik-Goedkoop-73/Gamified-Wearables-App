@@ -11,7 +11,7 @@
 
 body {
   color: black;
-  background-color: #faf7ed;
+  background-color: #fcfbfc;
   margin: 0;
   padding: 0;
   text-align: justify;
@@ -27,10 +27,10 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(black, #faf7ed, black);
+  background: linear-gradient(black, #fcfbfc, black);
 }
 
-main {
+section {
   margin-left: 5rem;
   padding: 1rem;
 }
@@ -43,7 +43,7 @@ main {
   margin-right: -10px;
   margin-bottom: 10px;
   overflow: auto;
-  background-color: rgba(226, 218, 190, 0.5);
+  background-color: #faf7ed; /* rgba(226, 218, 190, 0.5); */
 }
 
 .text-center {
@@ -67,4 +67,9 @@ hr {
   border: none;
   border-top: 3px solid var(--bg-primary);
   border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: #df49a6;
 }
