@@ -73,3 +73,11 @@ a {
   text-decoration: none;
   color: #df49a6;
 }
+
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+  section {
+    margin-left: 0; /* Fixes empty left margin on screen */
+  }
+}

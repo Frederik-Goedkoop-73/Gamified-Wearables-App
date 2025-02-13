@@ -9,11 +9,11 @@ import Navbar from './components/Navbar.vue';
 
 <template>
   <main>
-    <Header UserName="Example user" />
-    <UserCard msg="Example user" />
+    <Header id="Header" UserName="Example user" />
+    <UserCard id="UserCard" msg="Example user" />
     <!--- Change this so you can fill it in -->
     <hr style="width: 70%;">
-    <Information />
+    <Information id="Information" />
     <hr style="width: 70%;">
 
     <Body />

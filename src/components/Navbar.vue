@@ -1,6 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 // https://youtu.be/CfTvye31Ad0
+
+// Scroll functions for links
+const scrollToHeader = () => {
+    const HeaderElement = document.getElementById("Header"); // Change to get by component -> Header -> Repeat for each link
+    if (HeaderElement) {
+        HeaderElement.scrollIntoView({ behavior: "smooth" });
+    }
+};
+
+const scrollToInfo = () => {
+    const InformationElement = document.getElementById("Information"); 
+    if (InformationElement) {
+        InformationElement.scrollIntoView({ behavior: "smooth" });
+    }
+};
+
 </script>
 
 <template>
@@ -8,7 +24,7 @@ import { ref } from 'vue';
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="logo">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToHeader" class="nav-link">
             <span class="link-text logo-text">KUL</span>
             <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img"
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -26,7 +42,7 @@ import { ref } from 'vue';
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToInfo" class="nav-link">
             <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"
               stroke-width="0.00024000000000000003">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -347,7 +363,7 @@ section {
   display: none;
 }
 
-.dark #darkIcon {
+/* .dark #darkIcon {
   display: block;
 }
 
@@ -357,5 +373,5 @@ section {
 
 .solar #solarIcon {
   display: block;
-}
+} */
 </style>
