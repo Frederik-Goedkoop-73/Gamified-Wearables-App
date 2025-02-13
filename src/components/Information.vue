@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 
-const scrollToBottom = () => {
-    const bottomElement = document.getElementById("bottom");
-    if (bottomElement) {
-        bottomElement.scrollIntoView({ behavior: "smooth" });
+const scrollToFooter = () => {
+    const FooterElement = document.getElementById("Footer");
+    if (FooterElement) {
+        FooterElement.scrollIntoView({ behavior: "smooth" });
     }
 };
 
@@ -84,7 +84,7 @@ const scrollToBottom = () => {
                         </li>
                         <li><strong>Phone:</strong> <a href="tel:+32474547625">+32 4 74 54 76 25</a></li>
                     </ul>
-                    <p>More contact information can be found in the <a href="#" @click.prevent="scrollToBottom">contact
+                    <p>More contact information can be found in the <a href="#" @click.prevent="scrollToFooter">contact
                             information section</a>.</p>
                 </li>
 
@@ -102,24 +102,6 @@ const scrollToBottom = () => {
 </template>
 
 <style scoped>
-ul {
-    list-style: none;
-}
-
-.logo-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    width: 4rem;
-    min-width: 4rem;
-    height: 4rem;
-    min-height: 4rem;
-}
-
 h1 {
     text-align: start;
     /* Prevent "About" from sticking to right*/
@@ -131,5 +113,9 @@ h1 {
 
 .disc-list {
     list-style: disc;
+}
+
+p {
+    text-align:justify;
 }
 </style>

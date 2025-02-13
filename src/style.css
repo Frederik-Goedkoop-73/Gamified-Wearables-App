@@ -32,7 +32,7 @@ body::-webkit-scrollbar-thumb {
 
 section {
   margin-left: 5rem;
-  padding: 1rem;
+  padding: 3rem; /* Was 1rem initially 13/2/25 */
 }
 
 .grey-border {
@@ -59,7 +59,7 @@ section {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  border: solid, medium, rgb(0, 0, 0, 0.5);
+  border: solid, medium, var(--bg-primary);
   border-radius: 10px;
 }
 
@@ -74,6 +74,27 @@ a {
   color: #df49a6;
 }
 
+/* -- Body components -- */
+
+/* logo header for top of body components */
+.logo-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 4rem;
+  min-width: 4rem;
+  height: 4rem;
+  min-height: 4rem;
+}
+
+/* Most ul's are for flex -> specify for points with class="disc-list" */
+ul {
+  list-style: none;
+}
 
 /* Small screens */
 @media only screen and (max-width: 600px) {

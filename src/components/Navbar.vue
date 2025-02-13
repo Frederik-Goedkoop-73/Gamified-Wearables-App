@@ -4,17 +4,59 @@ import { ref } from 'vue';
 
 // Scroll functions for links
 const scrollToHeader = () => {
-    const HeaderElement = document.getElementById("Header"); // Change to get by component -> Header -> Repeat for each link
-    if (HeaderElement) {
-        HeaderElement.scrollIntoView({ behavior: "smooth" });
-    }
+  const HeaderElement = document.getElementById("Header"); // Change to get by component -> Header -> Repeat for each link
+  if (HeaderElement) {
+    HeaderElement.scrollIntoView({ behavior: "smooth" });
+  }
 };
 
 const scrollToInfo = () => {
-    const InformationElement = document.getElementById("Information"); 
-    if (InformationElement) {
-        InformationElement.scrollIntoView({ behavior: "smooth" });
-    }
+  const InformationElement = document.getElementById("Information");
+  if (InformationElement) {
+    InformationElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToHealth = () => {
+  const HealthElement = document.getElementById("Health");
+  if (HealthElement) {
+    HealthElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToQuests = () => {
+  const QuestsElement = document.getElementById("Quests");
+  if (QuestsElement) {
+    QuestsElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToShop = () => {
+  const ShopElement = document.getElementById("Shop");
+  if (ShopElement) {
+    ShopElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToBadges = () => {
+  const BadgesElement = document.getElementById("Badges");
+  if (BadgesElement) {
+    BadgesElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToLeaderboard = () => {
+  const LeaderboardElement = document.getElementById("Leaderboard");
+  if (LeaderboardElement) {
+    LeaderboardElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToProfile = () => {
+  const ProfileElement = document.getElementById("Profile");
+  if (ProfileElement) {
+    ProfileElement.scrollIntoView({ behavior: "smooth" });
+  }
 };
 
 </script>
@@ -23,7 +65,7 @@ const scrollToInfo = () => {
   <section>
     <nav class="navbar">
       <ul class="navbar-nav">
-        <li class="logo">
+        <li class="nav-logo">
           <a href="#" @click.prevent="scrollToHeader" class="nav-link">
             <span class="link-text logo-text">KUL</span>
             <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img"
@@ -58,7 +100,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToHealth" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -73,7 +115,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToQuests" class="nav-link">
             <svg fill="#f1ede7" viewBox="0 -336 1557 1557" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -93,7 +135,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToShop" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -111,7 +153,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#"  @click.prevent="scrollToBadges" class="nav-link">
             <svg fill="#f1ede7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -126,7 +168,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToLeaderboard" class="nav-link">
             <svg fill="#f1ede7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -141,7 +183,7 @@ const scrollToInfo = () => {
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" @click.prevent="scrollToProfile" class="nav-link">
             <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" fill="#f1ede7">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -260,7 +302,7 @@ section {
   transition: var(--transition-speed);
 }
 
-.logo {
+.nav-logo {
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -272,7 +314,7 @@ section {
   width: 100%;
 }
 
-.logo svg {
+.nav-logo svg {
   transform: rotate(0deg);
   transition: var(--transition-speed);
 }
@@ -284,7 +326,7 @@ section {
   transition: var(--transition-speed);
 }
 
-.navbar:hover .logo svg {
+.navbar:hover .nav-logo svg {
   transform: rotate(-180deg);
 }
 
@@ -296,7 +338,7 @@ section {
     height: 5rem;
   }
 
-  .logo {
+  .nav-logo {
     display: none;
   }
 
@@ -329,7 +371,7 @@ section {
     display: inline;
   }
 
-  .navbar:hover .logo svg {
+  .navbar:hover .nav-logo svg {
     margin-left: 11rem;
   }
 

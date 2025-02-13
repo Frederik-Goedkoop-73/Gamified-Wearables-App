@@ -42,7 +42,7 @@ h1 {
     margin-top: 5px;
     font-size: xx-large;
     color: var(--text-secondary);
-    text-align: center;
+    text-align: center;;
 }
 
 p {
