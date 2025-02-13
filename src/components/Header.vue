@@ -14,7 +14,7 @@ defineProps({
     <section class="header-container">
         <h1>{{ UserName }}</h1>
         <div class="progress-bar-container">
-            <p>Lvl. {{ level }}</p>
+            <p id="left-level">Lvl. {{ level }}</p>
             <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="progress" :style="{ width: xpProgress() + '%' }"></div>
@@ -28,7 +28,7 @@ defineProps({
 .header-container {
     padding: 5px 0 0 0;
     background-color: var(--bg-secondary);
-    height: 16rem;
+    height: 9rem;
     /* normally 4rem*/
     overflow: visible;
 
@@ -43,6 +43,14 @@ h1 {
     font-size: xx-large;
     color: var(--text-secondary);
     text-align: center;
+}
+
+p {
+    color: var(--text-primary);
+}
+
+#left-level {
+    padding-left: 15px;
 }
 
 .progress-info {
