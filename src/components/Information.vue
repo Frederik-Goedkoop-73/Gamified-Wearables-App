@@ -8,12 +8,23 @@ const scrollToFooter = () => {
     }
 };
 
+const isContentVisible = ref(false);
+
+const toggleContentVisisbility = () => {
+    isContentVisible.value = !isContentVisible.value;
+};
+
+// Function to unfold content when navigating from navbar
+const unfoldContent = () => {
+    isContentVisible = true;
+};
+
 </script>
 
 <template>
     <section>
         <div class="grey-border">
-            <ul class="logo-header">
+            <ul class="logo-header" @click="toggleContentVisisbility">
                 <li class="logo">
                     <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"
                         stroke-width="0.00024000000000000003">
@@ -32,71 +43,95 @@ const scrollToFooter = () => {
             </ul>
 
             <hr>
-
-            <ul class="text-center text-justify content-list">
-                <li>
-                    <h3>Webiste purpose:</h3>
-                    <p>Welcome, this website is a platform designed to analyse Fitbit activity data. The goal of this
-                        study is to observe how the use of this website may influence users’ physical activity over
-                        time. By syncing your Fitbit data with the website, we aim to collect valuable information to
-                        assess the relationship between digital platforms and health engagement.</p>
-                </li>
-
-                <li>
-                    <h3>How it works:</h3>
-                    <ul class="disc-list">
-                        <li><strong>Fitbit Syncing:</strong> Sync your Fitbit data with the website to automatically
-                            track your activity metrics such as steps, calories burned, and other key health indicators.
+            <transition name="slide">
+                <div v-show="isContentVisible">
+                    <ul class="text-center text-justify content-list">
+                        <li>
+                            <h3>Webiste purpose:</h3>
+                            <p>Welcome, this website is a platform designed to analyse Fitbit activity data. The goal of
+                                this
+                                study is to observe how the use of this website may influence users’ physical activity
+                                over
+                                time. By syncing your Fitbit data with the website, we aim to collect valuable
+                                information
+                                to
+                                assess the relationship between digital platforms and health engagement.</p>
                         </li>
-                        <li><strong>Progress Monitoring:</strong> View your activity data over time and monitor your
-                            progress through your personal dashboard.</li>
-                        <li><strong>Data Collection:</strong> Your Fitbit data will be collected for analysis as part of
-                            this study, which will help us evaluate the impact of the website on physical activity.</li>
-                    </ul>
-                </li>
 
-                <li>
-                    <h3>User Instructions:</h3>
-                    <ol>
-                        <li><strong>Log In:</strong> Create an account or log in with your existing credentials.</li>
-                        <li><strong>Sync Fitbit Data:</strong> Navigate to the sync page and connect your Fitbit to
-                            allow the website to access your activity data.</li>
-                        <li><strong>Track Progress:</strong> Use the dashboard to see your tracked fitness metrics and
-                            review how your physical activity evolves over time.</li>
-                    </ol>
-                </li>
-
-                <li>
-                    <h3>Data Privacy:</h3>
-                    <p>We prioritise your privacy. All data collected from your Fitbit and the website is securely
-                        stored and used exclusively for this research study. We adhere to ethical guidelines and data
-                        protection regulations (SMEC approval). For full details on how your data is handled, please
-                        refer to our <a>[Privacy Policy]</a>.</p>
-                </li>
-
-                <li>
-                    <h3>Contact Information:</h3>
-                    <ul class="disc-list">
-                        <li><strong>Email:</strong> <a
-                                href="mailto:Frederik.Goedkoop@student.uantwerpen.be">Frederik.Goedkoop@student.uantwerpen.be</a>
-                            or <a
-                                href="mailto:frederik.goedkoop@student.kuleuven.be">frederik.goedkoop@student.kuleuven.be</a>
+                        <li>
+                            <h3>How it works:</h3>
+                            <ul class="disc-list">
+                                <li><strong>Fitbit Syncing:</strong> Sync your Fitbit data with the website to
+                                    automatically
+                                    track your activity metrics such as steps, calories burned, and other key health
+                                    indicators.
+                                </li>
+                                <li><strong>Progress Monitoring:</strong> View your activity data over time and monitor
+                                    your
+                                    progress through your personal dashboard.</li>
+                                <li><strong>Data Collection:</strong> Your Fitbit data will be collected for analysis as
+                                    part of
+                                    this study, which will help us evaluate the impact of the website on physical
+                                    activity.
+                                </li>
+                            </ul>
                         </li>
-                        <li><strong>Phone:</strong> <a href="tel:+32474547625">+32 4 74 54 76 25</a></li>
+
+                        <li>
+                            <h3>User Instructions:</h3>
+                            <ol>
+                                <li><strong>Log In:</strong> Create an account or log in with your existing credentials.
+                                </li>
+                                <li><strong>Sync Fitbit Data:</strong> Navigate to the sync page and connect your Fitbit
+                                    to
+                                    allow the website to access your activity data.</li>
+                                <li><strong>Track Progress:</strong> Use the dashboard to see your tracked fitness
+                                    metrics
+                                    and
+                                    review how your physical activity evolves over time.</li>
+                            </ol>
+                        </li>
+
+                        <li>
+                            <h3>Data Privacy:</h3>
+                            <p>We prioritise your privacy. All data collected from your Fitbit and the website is
+                                securely
+                                stored and used exclusively for this research study. We adhere to ethical guidelines and
+                                data
+                                protection regulations (SMEC approval). For full details on how your data is handled,
+                                please
+                                refer to our <a>[Privacy Policy]</a>.</p>
+                        </li>
+
+                        <li>
+                            <h3>Contact Information:</h3>
+                            <ul class="disc-list">
+                                <li><strong>Email:</strong> <a
+                                        href="mailto:Frederik.Goedkoop@student.uantwerpen.be">Frederik.Goedkoop@student.uantwerpen.be</a>
+                                    or <a
+                                        href="mailto:frederik.goedkoop@student.kuleuven.be">frederik.goedkoop@student.kuleuven.be</a>
+                                </li>
+                                <li><strong>Phone:</strong> <a href="tel:+32474547625">+32 4 74 54 76 25</a></li>
+                            </ul>
+                            <p>More contact information can be found in the <a href="#"
+                                    @click.prevent="scrollToFooter">contact
+                                    information section</a>.</p>
+                        </li>
+
+                        <li>
+                            <h3>Fitbit Integration:</h3>
+                            <p>This website integrates with your Fitbit device to gather activity data such as steps,
+                                calories
+                                burned, and heart rate. By syncing your Fitbit, we can collect data in real time, which
+                                will
+                                contribute to the study's analysis of how digital platforms may impact physical activity
+                                levels.
+                            </p>
+                        </li>
+
                     </ul>
-                    <p>More contact information can be found in the <a href="#" @click.prevent="scrollToFooter">contact
-                            information section</a>.</p>
-                </li>
-
-                <li>
-                    <h3>Fitbit Integration:</h3>
-                    <p>This website integrates with your Fitbit device to gather activity data such as steps, calories
-                        burned, and heart rate. By syncing your Fitbit, we can collect data in real time, which will
-                        contribute to the study's analysis of how digital platforms may impact physical activity levels.
-                    </p>
-                </li>
-
-            </ul>
+                </div>
+            </transition>
         </div>
     </section>
 </template>
@@ -111,11 +146,29 @@ h1 {
     text-align: start;
 }
 
-.disc-list {
-    list-style: disc;
+p {
+    text-align: justify;
 }
 
-p {
-    text-align:justify;
+/* Transition styles */
+.content-wrapper {
+    overflow: hidden;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    max-height: 0;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+    max-height: 1000px;
+    /* Adjust this value based on your content's maximum height */
 }
 </style>

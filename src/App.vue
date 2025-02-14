@@ -31,7 +31,6 @@ import Footer from './components/Footer.vue';
     <Badges id="Badges" />
     <hr style="width: 70%;">
     <Leaderboard id="Leaderboard" />
-    
     <Footer id="Footer" />
 
     <Navbar />

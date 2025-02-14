@@ -43,7 +43,7 @@ import { ref } from 'vue';
 
 <style scoped>
 .example-img {
-    height: 30rem;
-    width: 60rem;
+    max-height: 30rem;
+    max-width: 60rem;
 }
 </style>
