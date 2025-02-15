@@ -106,3 +106,8 @@ ul {
     margin-left: 0; /* Fixes empty left margin on screen */
   }
 }
+
+/* Debugging and to do's */
+.to-fix {
+  color: red;
+}

@@ -46,6 +46,14 @@ const unfoldContent = () => {
             <transition name="slide">
                 <div v-show="isContentVisible">
                     <ul class="text-center text-justify content-list">
+                        <li class="to-fix">
+                            <h3>To fix:</h3>
+                            <ul class="disc-list">
+                                <li><strong>Fix jolting motion after transition</strong></li>
+                                <li><strong>Use Pinia / eventBus / provide-inject to use unFold() in navbar.vue</strong></li>
+                                <li><strong>Add dropdown arrow with animation -> idem navbar</strong></li>
+                            </ul>
+                        </li>
                         <li>
                             <h3>Webiste purpose:</h3>
                             <p>Welcome, this website is a platform designed to analyse Fitbit activity data. The goal of
