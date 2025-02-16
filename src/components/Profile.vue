@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue';
-/* import UserProgress from '/home/Frederik-Goedkoop-73/Gamified-Wearables-App/src/composables/UserProgress.js'; */
-import UserProgress from '../composables/UserProgress.js'; /* .. are important here -> long debugging sesch */
+import useUserProgress from '../composables/UserProgress.js'; /* .. are important here -> long debugging sesch */
+/* import useXPStore from '../stores/xpStore'; */
+
+// Destructure the UserProgress composable
+const { count, level, showPopup, leveledUpTo, addXp, totalXpNeededForNextLevel, xpProgress, closePopup } = useUserProgress();
 
 
-
-const { count, level, showPopup, leveledUpTo, addXp, totalXpNeededForNextLevel, xpProgress, closePopup } = UserProgress();
-
+// Define props (if needed)
 defineProps({
   msg: String,
 });

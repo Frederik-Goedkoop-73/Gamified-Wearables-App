@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export default function UserProgress() {
+export default function useUserProgress() {
     const count = ref(0); // XP count
     const level = ref(1); // Initial level
     const showPopup = ref(false); // Controls the visibility of the level-up popup
@@ -36,29 +36,8 @@ export default function UserProgress() {
         showPopup.value = false;
     };
 
-    /* // Handle drag-and-drop of the new avatar image
-    const handleAvatarDrop = (event) => {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        if (files.length > 0) {
-            const file = files[0];
-            const reader = new FileReader();
 
-            reader.onload = (e) => {
-                avatarImage.value = e.target.result; // Update the avatar image with the dropped file
-            };
-
-            reader.readAsDataURL(file); // Convert the file to a base64 string
-        }
-    };
-
-    const allowDragOver = (event) => {
-        event.preventDefault(); // Prevent the default behavior to allow drop
-    }; */
-
-
-    // Return all the state and functions that other components will need
-    
+    // Return all the state and functions that other components will need    
     return {
         count,
         level,
