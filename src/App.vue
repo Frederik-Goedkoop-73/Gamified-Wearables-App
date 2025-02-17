@@ -10,6 +10,8 @@ import Leaderboard from './components/Leaderboard.vue';
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 
+import Counter from './components/Counter.vue';
+
 </script>
 
 <template>
@@ -19,17 +21,13 @@ import Footer from './components/Footer.vue';
     <!--- Change this so you can fill it in -->
     <Profile id="Profile" UserName="Example user" />
     
-    <hr style="width: 70%;">
     <Information id="Information" />
     <hr style="width: 70%;">
+    <Counter />
     <Health id="Health" />
-    <hr style="width: 70%;">
     <Quests id="Quests" />
-    <hr style="width: 70%;">
     <Shop id="Shop" />
-    <hr style="width: 70%;">
     <Badges id="Badges" />
-    <hr style="width: 70%;">
     <Leaderboard id="Leaderboard" />
     <Footer id="Footer" />
 

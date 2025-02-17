@@ -111,3 +111,18 @@ ul {
 .to-fix {
   color: red;
 }
+
+button {
+  color: var(--text-secondary);
+  background-color: var(--bg-primary);
+  border-radius: 20px;
+  border-style: solid;
+  padding: 5px;
+  transition: padding 300ms ease
+}
+
+button:hover {
+  background-color: var(--bg-secondary);
+  padding: 10px;
+  transition: padding 300ms ease;
+}

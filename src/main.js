@@ -7,6 +7,3 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.mount("#app")
-
-/* createPinia(App).use(Pinia) */
-/* createApp(App).mount('#app') */
