@@ -17,7 +17,7 @@ import Footer from './components/Footer.vue';
     <Header id="Header" UserName="Example user" />
     
     <!--- Change this so you can fill it in -->
-    <Profile id="Profile" msg="Example user" />
+    <Profile id="Profile" UserName="Example user" />
     
     <hr style="width: 70%;">
     <Information id="Information" />

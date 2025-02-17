@@ -9,7 +9,7 @@ const { count, level, showPopup, leveledUpTo, addXp, totalXpNeededForNextLevel, 
 
 // Define props (if needed)
 defineProps({
-  msg: String,
+  UserName: String,
 });
 
 </script>
@@ -17,8 +17,7 @@ defineProps({
 <template>
   <section>
     <div class="grey-border">
-      <h1>{{ msg }}</h1>
-      <!-- Mustache not necessary-->
+      <h1>{{ UserName }}</h1>
 
       <!-- Avatar and User Info -->
       <div class="user-card">
@@ -28,7 +27,7 @@ defineProps({
         </div>
 
         <div class="progress-info">
-
+          <div class="empty-flex"></div>
           <div class="progress-bar-container">
             <p>Lvl. {{ level }}</p>
             <!-- Progress Bar -->
@@ -37,7 +36,7 @@ defineProps({
             </div>
             <p>Lvl. {{ level + 1 }}</p>
           </div>
-          <p>{{ count }} XP / {{ totalXpNeededForNextLevel() }} XP</p>
+          <p id="progress-fraction">{{ count }} XP / {{ totalXpNeededForNextLevel() }} XP</p>
         </div>
       </div>
 
@@ -112,12 +111,37 @@ h1 {
 
 .progress-info {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+}
+
+.empty-flex {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
 }
 
 .progress-bar-container {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+}
+
+.progress-bar-container p {
+  min-width: 4rem;
+  text-align: center;
+  margin: 0;
+}
+
+#progress-fraction {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  margin: 0;
+  align-content: center;
 }
 
 .progress-bar {

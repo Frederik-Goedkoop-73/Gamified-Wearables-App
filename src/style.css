@@ -27,7 +27,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--bg-secondary), var(--text-secondary), var(--bg-secondary));
+  background: linear-gradient(var(--bg-secondary), var(--text-primary), var(--bg-secondary));
 }
 
 section {

@@ -3,5 +3,10 @@ import { createPinia } from 'pinia'
 import './style.css'
 import App from './App.vue'
 
+const app = createApp(App);
+
+app.use(createPinia());
+app.mount("#app")
+
 /* createPinia(App).use(Pinia) */
-createApp(App).mount('#app')
+/* createApp(App).mount('#app') */

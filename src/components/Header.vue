@@ -29,7 +29,7 @@ defineProps({
                             fill="#df49a6"></path>
                     </g>
                 </svg>
-                <p>#currency</p>
+                <p>#coins</p>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -81,6 +81,7 @@ defineProps({
     flex-basis: 0;
 }
 
+/* To remove left div that centers text */ 
 @media only screen and (min-width: 1200px) {
   .empty-flex {
     flex-grow: 1;
@@ -120,10 +121,20 @@ defineProps({
     align-items: center;
 }
 
-svg {
-    height: 60px;
-    width: 80px;
-}
+/* To shrink streak and currency svgs */
+@media only screen and (min-width: 800px) {
+  svg {
+    width: 60px;
+    transition: width 300ms ease;
+  }
+} 
+
+@media only screen and (max-width: 800px) {
+  svg {
+    width: 40px;
+    transition: width 300ms ease;
+  }
+} 
 
 p {
     color: var(--text-primary);
