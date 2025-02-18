@@ -37,9 +37,10 @@ const unfoldContent = () => {
                         </g>
                     </svg>
                 </li>
-                <li>
+                <li class="logo-header-header">
                     <h1>Information About The Website</h1>
                 </li>
+                <li class="logo-header-empty"></li>
             </ul>
 
             <hr>
@@ -145,10 +146,6 @@ const unfoldContent = () => {
 </template>
 
 <style scoped>
-h1 {
-    text-align: start;
-    /* Prevent "About" from sticking to right*/
-}
 
 .content-list {
     text-align: start;

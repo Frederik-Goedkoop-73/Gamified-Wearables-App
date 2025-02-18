@@ -20,9 +20,10 @@ import { ref } from 'vue';
                         </g>
                     </svg>
                 </li>
-                <li>
+                <li class="logo-header-header">
                     <h1>Shop</h1>
                 </li>
+                <li class="logo-header-empty"></li>
             </ul>
 
             <hr>

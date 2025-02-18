@@ -1,11 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-import useUserProgress from '../composables/UserProgress.js'; /* .. are important here -> long debugging sesch */
-/* import useXPStore from '../stores/xpStore'; */
+import { useXPStore } from '../stores/xpStore';
 
-// Destructure the UserProgress composable
-const { count, level, showPopup, leveledUpTo, addXp, totalXpNeededForNextLevel, xpProgress, closePopup } = useUserProgress();
-
+// Initialise the Pinia store
+const xpStore = useXPStore();
 
 // Define props (if needed)
 defineProps({
@@ -29,30 +26,30 @@ defineProps({
         <div class="progress-info">
           <div class="empty-flex"></div>
           <div class="progress-bar-container">
-            <p>Lvl. {{ level }}</p>
+            <p>Lvl. {{ xpStore.level }}</p>
             <!-- Progress Bar -->
             <div class="progress-bar">
-              <div class="progress" :style="{ width: xpProgress() + '%' }"></div>
+              <div class="progress" :style="{ width: xpStore.xpProgress() + '%' }"></div>
             </div>
-            <p>Lvl. {{ level + 1 }}</p>
+            <p>Lvl. {{ xpStore.level + 1 }}</p>
           </div>
-          <p id="progress-fraction">{{ count }} XP / {{ totalXpNeededForNextLevel() }} XP</p>
+          <p id="progress-fraction">{{ xpStore.xp }} XP / {{ xpStore.totalXpNeededForNextLevel() }} XP</p>
         </div>
       </div>
 
       <!-- XP Buttons --> <!-- Needs shared state management -->
-      <div class="card">
-        <button type="button" @click="addXp(10)">Gain 10 XP</button>
-        <button type="button" @click="addXp(100)">Gain 100 XP</button>
-        <button type="button" @click="addXp(1000)">Gain 1000 XP</button>
-      </div>
+      <!-- <div class="card">
+        <button type="button" @click="xpStore.addXP(10)">Gain 10 XP</button>
+        <button type="button" @click="xpStore.addXP(100)">Gain 100 XP</button>
+        <button type="button" @click="xpStore.addXP(1000)">Gain 1000 XP</button>
+      </div> -->
 
       <!-- Level-up Popup -->
-      <div v-if="showPopup" class="popup">
+      <div v-if="xpStore.showPopup" class="popup">
         <div class="popup-content">
           <h2>Congratulations!</h2>
-          <p>You have leveled up to Level {{ leveledUpTo }}!</p>
-          <button @click="closePopup">OK</button>
+          <p>You have leveled up to Level {{ xpStore.leveledUpTo }}!</p>
+          <button @click="xpStore.closePopup">OK</button>
         </div>
       </div>
     </div>

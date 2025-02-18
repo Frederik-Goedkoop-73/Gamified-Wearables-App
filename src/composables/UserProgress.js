@@ -1,3 +1,5 @@
+// Currently not in use --> everything transported to xpStore.js
+
 import { ref } from 'vue';
 
 export default function useUserProgress() {

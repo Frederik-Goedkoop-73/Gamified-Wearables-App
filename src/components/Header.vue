@@ -1,13 +1,16 @@
 <script setup>
-import { ref } from 'vue';
-import UserProgress from '../composables/UserProgress';
+import { useXPStore } from '../stores/xpStore';
+import { useStreakStore } from '../stores/streakStore';
+import { useCoinStore } from '../stores/coinStore'
 
-const { level, xpProgress, } = UserProgress();
+// Initialise the Pinia store
+const xpStore = useXPStore();
+const streakStore = useStreakStore();
+const coinStore = useCoinStore();
 
 defineProps({
     UserName: String,
 });
-
 </script>
 
 <template>
@@ -19,7 +22,7 @@ defineProps({
             </div>
             <div class="streak-currency">
                 <!-- Streak icon must be color:var(--text-primary) when inactive and #df49a6 when active-->
-                <p>#streak</p>
+                <p>{{ streakStore.streak }}</p>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -29,7 +32,7 @@ defineProps({
                             fill="#df49a6"></path>
                     </g>
                 </svg>
-                <p>#coins</p>
+                <p>{{ coinStore.coins }}</p>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -45,12 +48,12 @@ defineProps({
             </div>
         </div>
         <div class="progress-bar-container">
-            <p class="level-number" id="left-level-number">Lvl. {{ level }}</p>
+            <p class="level-number" id="left-level-number">Lvl. {{ xpStore.level }}</p>
             <!-- Progress Bar -->
             <div class="progress-bar">
-                <div class="progress" :style="{ width: xpProgress() + '%' }"></div>
+                <div class="progress" :style="{ width: xpStore.xpProgress() + '%' }"></div>
             </div>
-            <p class="level-number">Lvl. {{ level + 1 }}</p>
+            <p class="level-number" id="right-level-number">Lvl. {{ xpStore.level + 1 }}</p>
         </div>
     </section>
 </template>
@@ -146,6 +149,10 @@ p {
 
 #left-level-number {
     padding-left: 15px;
+}
+
+#right-level-number {
+    padding-right: 15px;
 }
 
 .progress-info {
