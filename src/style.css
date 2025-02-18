@@ -81,14 +81,36 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  max-height: 4rem;
+  padding-left: 0;
+}
+
+.logo-header-header {
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0;
+  text-align: center;
+}
+
+.logo-header-empty {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
 }
 
 .logo {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  text-align: left;
+}
+
+.logo svg {
   width: 4rem;
   min-width: 4rem;
   height: 4rem;
-  min-height: 4rem;
+  min-height: 4rem; 
 }
 
 /* Most ul's are for flex -> specify for points with class="disc-list" */
