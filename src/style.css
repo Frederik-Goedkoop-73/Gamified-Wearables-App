@@ -93,17 +93,17 @@ a {
   text-align: center;
 }
 
-.logo-header-empty {
+/* .logo-header-empty {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
-}
+} */
 
 .logo {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .logo svg {
