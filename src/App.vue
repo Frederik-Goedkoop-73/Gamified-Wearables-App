@@ -1,38 +1,51 @@
 <script setup>
-import Header from './components/Header.vue';
-import Profile from './components/Profile.vue';
-import Information from './components/Information.vue';
-import Health from './components/Health.vue';
-import Quests from './components/Quests.vue';
-import Shop from './components/Shop.vue';
-import Badges from './components/Badges.vue';
-import Leaderboard from './components/Leaderboard.vue';
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
+// Track state to only show "sign out" button when logged in
+import { onMounted, ref } from "vue";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
-import DevTools from './components/DevTools.vue';
+const isLoggedIn = ref(false);
 
+// We use onMounted hook so we have access to firebase once app is created
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) { // So if user != null
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  });
+});
+
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  });
+};
 </script>
 
 <template>
-  <main>
-    <Header id="Header" UserName="Example user" />
-    
-    <!-- Temporary to change variables -->
-    <DevTools />
-
-    <!--- Change this so you can fill it in -->
-    <Profile id="Profile" UserName="Example user" />
-    
-    <Information id="Information" />
-    <hr style="width: 70%;">
-    <Health id="Health" />
-    <Quests id="Quests" />
-    <Shop id="Shop" />
-    <Badges id="Badges" />
-    <Leaderboard id="Leaderboard" />
-    <Footer id="Footer" />
-
-    <Navbar />
-  </main>
+  <nav>
+    <router-link to="/"> Home </router-link>
+    <router-link to="/sign-in"> Login </router-link>
+    <router-link to="/register"> Register </router-link>
+    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
+  </nav>
+    <router-view />
 </template>
+
+<style scoped>
+nav {
+  margin-left: 80px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav a {
+  border: 2px solid black;
+  flex-grow:1;
+  flex-basis:0;
+  text-align: center;
+  height:2rem;
+}
+</style>
