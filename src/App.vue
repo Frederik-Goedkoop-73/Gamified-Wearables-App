@@ -1,30 +1,7 @@
 <script setup>
-// Track state to only show "sign out" button when logged in
-import { onMounted, ref } from "vue";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useRouter } from "vue-router";
+import { useAuth } from './composables/UseAuth';
 
-const router = useRouter();
-const isLoggedIn = ref(false);
-
-// We use onMounted hook so we have access to firebase once app is created
-let auth;
-onMounted(() => {
-  auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) { // So if user != null
-      isLoggedIn.value = true;
-    } else {
-      isLoggedIn.value = false;
-    }
-  });
-});
-
-const handleSignOut = () => {
-  signOut(auth).then(() => {
-    router.push("/")
-  });
-};
+const { isLoggedIn, handleSignOut } = useAuth();
 </script>
 
 <template>
@@ -33,9 +10,9 @@ const handleSignOut = () => {
     <router-link to="/dashboard"> Dashboard </router-link>
     <router-link to="/sign-in"> 
       <p v-if="isLoggedIn">Log out</p> 
-      <p v-if="isLoggedIn == false"> Log in</p>
+      <p v-if="!isLoggedIn"> Log in</p>
     </router-link>
-    <div v-if="isLoggedIn == false"></div>
+    <div v-if="!isLoggedIn"></div>
     <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
   </nav>
     <router-view />
