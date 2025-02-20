@@ -114,11 +114,11 @@ button {
 .reset button {
 
     border: 2px solid red;
-    transition: border 300ms ease;
+    transition: background 300ms ease;
 }
 
 .reset button:hover {
-    border: 5px solid red;
-    transition: border 300ms ease;
+    background: #f44336;
+    transition: background 300ms ease;
 }
 </style>
