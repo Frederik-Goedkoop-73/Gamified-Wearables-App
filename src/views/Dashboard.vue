@@ -1,5 +1,4 @@
 <script setup>
-import Header from '../components/Header.vue';
 import Profile from '../components/Profile.vue';
 import Information from '../components/Information.vue';
 import Health from '../components/Health.vue';
