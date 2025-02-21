@@ -1,12 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import { useScroll } from "../composables/UseScroll.js";
 
-const scrollToFooter = () => {
-    const FooterElement = document.getElementById("Footer");
-    if (FooterElement) {
-        FooterElement.scrollIntoView({ behavior: "smooth" });
-    }
-};
+const { scrollToElement } = useScroll();
 
 const isContentVisible = ref(false);
 
@@ -134,7 +130,7 @@ const unfoldContent = () => {
                                 <li><strong>Phone:</strong> <a href="tel:+32474547625">+32 4 74 54 76 25</a></li>
                             </ul>
                             <p>More contact information can be found in the <a href="#"
-                                    @click.prevent="scrollToFooter">contact
+                                    @click.prevent="scrollToElement('Footer')">contact
                                     information section</a>.</p>
                         </li>
 

@@ -65,7 +65,7 @@ export function useAuth() {
         try {
             await signOut(auth);
             console.log("User signed out!");
-            router.push("/sign-in");
+            router.push("/");
         } catch (error) {
             console.log(error.message);
             errMsg.value = "Failed to sign out";

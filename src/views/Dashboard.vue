@@ -7,7 +7,6 @@ import Quests from '../components/Quests.vue';
 import Shop from '../components/Shop.vue';
 import Badges from '../components/Badges.vue';
 import Leaderboard from '../components/Leaderboard.vue';
-import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
 
 import DevTools from '../components/DevTools.vue';
@@ -16,8 +15,6 @@ import DevTools from '../components/DevTools.vue';
 
 <template>
   <main>
-    <Header id="Header" UserName="Example user" />
-    
     <!-- Temporary to change variables -->
     <DevTools />
 
@@ -32,7 +29,5 @@ import DevTools from '../components/DevTools.vue';
     <Badges id="Badges" />
     <Leaderboard id="Leaderboard" />
     <Footer id="Footer" />
-
-    <Navbar />
   </main>
 </template>

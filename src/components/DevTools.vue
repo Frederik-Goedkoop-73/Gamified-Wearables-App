@@ -104,11 +104,11 @@ button {
 }
 
 .streak button {
-    border-color: #df49a6;
+    border-color: var(--highlight-primary);
 }
 
 .currency button {
-    border-color: #efc800;
+    border-color: var(--coins);
 }
 
 .reset button {

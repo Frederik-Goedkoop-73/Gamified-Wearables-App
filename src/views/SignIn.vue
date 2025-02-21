@@ -23,6 +23,7 @@ const { email, password, errMsg, login, register, signInWithGoogle, handleSignOu
                 <p><button @click="signInWithGoogle">Sign In With Google</button></p>
             </div>
             <div><button class="log-out-btn" @click="handleSignOut">Log Out</button></div>
+            <div><router-link to="/">Go back</router-link></div>
         </section>
     </main>
 </template>
