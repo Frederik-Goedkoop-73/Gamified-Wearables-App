@@ -1,6 +1,13 @@
+<script setup>
+import { useAuth } from '../composables/UseAuth.js';
+
+const { isLoggedIn } = useAuth();
+
+</script>
+
 <template>
     <section>
-        <div class="grey-border">
+        <div class="grey-border home-container">
             <!-- Header Section -->
             <header class="header">
                 <h1>Welcome to the <br> KUL Wearables Health Monitor</h1>
@@ -10,6 +17,7 @@
             <!-- Cards Section (similar to Duolingo's lessons/cards) -->
             <div class="cards">
                 <div class="card">
+                    <router-link :to="isLoggedIn ? '/health' : '/sign-in'">
                     <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--bg-primary)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -32,55 +40,60 @@
                     </svg>
                     <h2>Track Your Progress</h2>
                     <p>Sync your Fitbit data and get personalized fitness insights.</p>
+                </router-link>
                 </div>
                 <div class="card">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path
-                                d="M4.00003 21V18.5C4.00003 15.4624 6.46246 13 9.50003 13H14.5C17.5376 13 20 15.4624 20 18.5V21M8.00003 21V18M16 21V18M4.37966 7L6.37966 9M4.37966 7L2.12042 9M4.37966 7V11.5M16 6.5C16 8.70914 14.2092 10.5 12 10.5C9.79089 10.5 8.00003 8.70914 8.00003 6.5C8.00003 4.29086 9.79089 2.5 12 2.5C14.2092 2.5 16 4.29086 16 6.5Z"
-                                stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
-                            </path>
-                        </g>
-                    </svg>
-                    <h2>Level Up</h2>
-                    <p>Complete challenges, earn XP, and improve your health.</p>
-                </div>
-                <div class="card">
-                    <svg fill="var(--bg-primary)" height="200px" width="200px" version="1.1" id="Capa_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 0 263.976 263.976" xml:space="preserve">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <g>
+                    <router-link :to="isLoggedIn ? '/dashboard' : '/sign-in'">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
                                 <path
-                                    d="M149.763,36.21c3.01-3.811,4.871-8.616,4.871-13.837C154.634,10.036,144.628,0,132.291,0s-22.358,10.036-22.358,22.373 c0,5.222,1.597,10.026,4.605,13.837c-9.211,5.839-15.55,16.117-15.55,27.807v27.22c0,4.143,3.785,7.739,7.928,7.739h50.811 c4.143,0,7.262-3.597,7.262-7.739v-27.22C164.988,52.327,158.976,42.048,149.763,36.21z">
-                                </path>
-                                <path
-                                    d="M81.988,124.539v-27.22c0-11.689-5.754-21.969-14.967-27.807c3.01-3.811,5-8.616,5-13.837 c0-12.337-9.942-22.373-22.279-22.373S27.416,43.339,27.416,55.676c0,5.222,1.855,10.026,4.863,13.837 c-9.212,5.839-15.292,16.117-15.292,27.807v27.22c0,4.143,3.301,7.437,7.443,7.437h50.811 C79.384,131.976,81.988,128.682,81.988,124.539z">
-                                </path>
-                                <path
-                                    d="M232.034,69.513c3.008-3.811,5.006-8.616,5.006-13.837c0-12.337-9.939-22.373-22.276-22.373 c-12.337,0-22.325,10.036-22.325,22.373c0,5.222,1.843,10.026,4.852,13.837c-9.212,5.839-15.304,16.117-15.304,27.807v27.22 c0,4.143,3.326,7.437,7.469,7.437h50.811c4.143,0,6.721-3.294,6.721-7.437v-27.22C246.988,85.63,241.245,75.351,232.034,69.513z">
-                                </path>
-                                <path
-                                    d="M149.763,201.464c3.01-3.811,4.871-8.615,4.871-13.836c0-12.337-10.006-22.373-22.343-22.373s-22.358,10.036-22.358,22.373 c0,5.221,1.597,10.026,4.605,13.837c-9.211,5.839-15.55,16.117-15.55,27.807v27.22c0,4.143,3.785,7.484,7.928,7.484h50.811 c4.143,0,7.262-3.342,7.262-7.484v-27.22C164.988,217.581,158.976,207.304,149.763,201.464z M132.321,180.255 c4.065,0,7.373,3.308,7.373,7.373c0,4.066-3.308,7.373-7.373,7.373s-7.373-3.308-7.373-7.373 C124.948,183.563,128.255,180.255,132.321,180.255z M149.988,248.976h-36v-19.704c0-9.874,8.127-17.906,18.001-17.906 c9.872,0,17.999,8.032,17.999,17.906V248.976z">
-                                </path>
-                                <path
-                                    d="M138.988,138.555v-24.854c0-4.143-3.357-7.5-7.5-7.5c-4.143,0-7.5,3.357-7.5,7.5v24.854c0,4.143,3.357,7.5,7.5,7.5 C135.63,146.055,138.988,142.697,138.988,138.555z">
-                                </path>
-                                <path
-                                    d="M59.331,140.177c-3.009-2.847-7.753-2.718-10.604,0.289c-2.848,3.008-2.718,7.755,0.289,10.604l37.709,35.707 c1.451,1.373,3.305,2.054,5.156,2.054c1.987,0,3.972-0.786,5.447-2.343c2.848-3.008,2.718-7.755-0.289-10.604L59.331,140.177z">
-                                </path>
-                                <path
-                                    d="M205.241,140.071l-37.606,35.789c-3.001,2.855-3.118,7.603-0.263,10.603c1.474,1.55,3.452,2.33,5.434,2.33 c1.857,0,3.718-0.686,5.169-2.067l37.606-35.789c3.001-2.855,3.118-7.602,0.263-10.602 C212.989,137.332,208.241,137.217,205.241,140.071z">
+                                    d="M4.00003 21V18.5C4.00003 15.4624 6.46246 13 9.50003 13H14.5C17.5376 13 20 15.4624 20 18.5V21M8.00003 21V18M16 21V18M4.37966 7L6.37966 9M4.37966 7L2.12042 9M4.37966 7V11.5M16 6.5C16 8.70914 14.2092 10.5 12 10.5C9.79089 10.5 8.00003 8.70914 8.00003 6.5C8.00003 4.29086 9.79089 2.5 12 2.5C14.2092 2.5 16 4.29086 16 6.5Z"
+                                    stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
                                 </path>
                             </g>
-                        </g>
-                    </svg>
-                    <h2>Join the Community</h2>
-                    <p>Compete with friends and climb the leaderboard.</p>
+                        </svg>
+                        <h2>Level Up</h2>
+                        <p>Complete challenges, earn XP, and improve your health.</p>
+                    </router-link>
+                </div>
+                <div class="card">
+                    <router-link :to="isLoggedIn ? '/' : '/sign-in'">
+                        <svg fill="var(--bg-primary)" height="200px" width="200px" version="1.1" id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 263.976 263.976" xml:space="preserve">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g>
+                                    <path
+                                        d="M149.763,36.21c3.01-3.811,4.871-8.616,4.871-13.837C154.634,10.036,144.628,0,132.291,0s-22.358,10.036-22.358,22.373 c0,5.222,1.597,10.026,4.605,13.837c-9.211,5.839-15.55,16.117-15.55,27.807v27.22c0,4.143,3.785,7.739,7.928,7.739h50.811 c4.143,0,7.262-3.597,7.262-7.739v-27.22C164.988,52.327,158.976,42.048,149.763,36.21z">
+                                    </path>
+                                    <path
+                                        d="M81.988,124.539v-27.22c0-11.689-5.754-21.969-14.967-27.807c3.01-3.811,5-8.616,5-13.837 c0-12.337-9.942-22.373-22.279-22.373S27.416,43.339,27.416,55.676c0,5.222,1.855,10.026,4.863,13.837 c-9.212,5.839-15.292,16.117-15.292,27.807v27.22c0,4.143,3.301,7.437,7.443,7.437h50.811 C79.384,131.976,81.988,128.682,81.988,124.539z">
+                                    </path>
+                                    <path
+                                        d="M232.034,69.513c3.008-3.811,5.006-8.616,5.006-13.837c0-12.337-9.939-22.373-22.276-22.373 c-12.337,0-22.325,10.036-22.325,22.373c0,5.222,1.843,10.026,4.852,13.837c-9.212,5.839-15.304,16.117-15.304,27.807v27.22 c0,4.143,3.326,7.437,7.469,7.437h50.811c4.143,0,6.721-3.294,6.721-7.437v-27.22C246.988,85.63,241.245,75.351,232.034,69.513z">
+                                    </path>
+                                    <path
+                                        d="M149.763,201.464c3.01-3.811,4.871-8.615,4.871-13.836c0-12.337-10.006-22.373-22.343-22.373s-22.358,10.036-22.358,22.373 c0,5.221,1.597,10.026,4.605,13.837c-9.211,5.839-15.55,16.117-15.55,27.807v27.22c0,4.143,3.785,7.484,7.928,7.484h50.811 c4.143,0,7.262-3.342,7.262-7.484v-27.22C164.988,217.581,158.976,207.304,149.763,201.464z M132.321,180.255 c4.065,0,7.373,3.308,7.373,7.373c0,4.066-3.308,7.373-7.373,7.373s-7.373-3.308-7.373-7.373 C124.948,183.563,128.255,180.255,132.321,180.255z M149.988,248.976h-36v-19.704c0-9.874,8.127-17.906,18.001-17.906 c9.872,0,17.999,8.032,17.999,17.906V248.976z">
+                                    </path>
+                                    <path
+                                        d="M138.988,138.555v-24.854c0-4.143-3.357-7.5-7.5-7.5c-4.143,0-7.5,3.357-7.5,7.5v24.854c0,4.143,3.357,7.5,7.5,7.5 C135.63,146.055,138.988,142.697,138.988,138.555z">
+                                    </path>
+                                    <path
+                                        d="M59.331,140.177c-3.009-2.847-7.753-2.718-10.604,0.289c-2.848,3.008-2.718,7.755,0.289,10.604l37.709,35.707 c1.451,1.373,3.305,2.054,5.156,2.054c1.987,0,3.972-0.786,5.447-2.343c2.848-3.008,2.718-7.755-0.289-10.604L59.331,140.177z">
+                                    </path>
+                                    <path
+                                        d="M205.241,140.071l-37.606,35.789c-3.001,2.855-3.118,7.603-0.263,10.603c1.474,1.55,3.452,2.33,5.434,2.33 c1.857,0,3.718-0.686,5.169-2.067l37.606-35.789c3.001-2.855,3.118-7.602,0.263-10.602 C212.989,137.332,208.241,137.217,205.241,140.071z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                        <h2>Join the Community</h2>
+                        <p>Compete with friends and climb the leaderboard.</p>
+                    </router-link>
                 </div>
             </div>
 
@@ -94,12 +107,9 @@
     </section>
 </template>
 
-<script setup>
-</script>
-
 <style scoped>
 /* General layout styling */
-.grey-border {
+.home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,7 +127,7 @@
 h1 {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #3b9b37;
+    color: var(--green-primary)7;
     /* Duolingo green */
 }
 
@@ -125,28 +135,6 @@ h1 {
     font-size: 1.2rem;
     margin-top: 0.5rem;
     color: #555;
-}
-
-/* Cards section styling */
-.cards {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 1rem;
-    width: 20rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
 }
 
 svg {
@@ -159,6 +147,7 @@ h2 {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: var(--bg-primary);
 }
 
 p {
@@ -172,7 +161,7 @@ p {
 }
 
 .cta-button {
-    background-color: #3b9b37;
+    background-color: var(--green-primary);
     color: white;
     padding: 0.75rem 2rem;
     border: none;

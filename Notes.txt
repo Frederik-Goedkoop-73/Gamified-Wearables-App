@@ -3,3 +3,41 @@
 1. Cool number animation
 https://play.vuejs.org/#eNp9U01v2zAM/SuELk0Bxw72cfGcDNvQAduhG7YedXFsxlFrS4JFJ+lS//dR8ke6oeglph7Jx6dH5Sw+WRsfOhSpyFzRKkvgkDq7kVo11rQEZ2hxF/FPXpA6YATHnIo99LBrTQNX3Hs111YutyPuQ05IXRjtCHTXbLGFtSdbrK4nmI6IGsuAD/yLs9QwlqewkrrnYqnD0MUlFflwoa9hvYHQAWF4TGYxckasvOzanJTRTBS/j2bW2/D13U9PsAI/AaCXmr9ZMrjA9+cDYWPrnJBPAFmpDlDUuXNrKUpsjBQBB7h7tAj5TJ8pbTuCw7IxJdbxAHPPEEgBydiX2Zlvq6rllN+cz5MxYzNf66s6YcnOQd9niV8PtyesiKMseaaTj44eax/GF9LBo53RtDyiqvaUwtbU5YcZdeoPpvAGG4bYCbZhJBGRGJa7bNjee2c0P5XAJseEkyKddiCF34IHpNgTWZcmSaftQxUXpkl87iOb0tUoxeh5zwPI8WvYqeo/em6xqsb2h/U7/HdMXtfm+D1g1HYYnkPo2WPx8AJ+706Dqp8tOmwPLGDOUd5WSEP65vctnjiek5PcV5K/0Jm68xqHss+dLln2s7qg9ltwS+nqzt2cCLWbLuWFBjdCvRT8l/ryytUvct/G72YX+79oOkVi
 
+
+2. Navbar hor
+- Remove leaderboard and profile
+- profile -> on dashboard
+- leaderboard -> dashboard
+
+3. Dev user checking
+---
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Make sure Firebase auth is correctly initialized
+
+const auth = getAuth();
+const isDevUser = ref(false);
+
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    if (user && user.email === 'dev.dev@gmail.com') {
+      isDevUser.value = true;
+    } else {
+      isDevUser.value = false;
+    }
+  });
+});
+</script>
+
+<template>
+  <div v-if="isDevUser">
+    <!-- Content visible only for the user with email dev.dev@gmail.com -->
+    <p>Welcome, dev.dev@gmail.com! You have exclusive access to this section.</p>
+    <YourComponent />
+  </div>
+  <div v-else>
+    <!-- Optionally, show a different message for others -->
+    <p>You do not have access to this section.</p>
+  </div>
+</template>
+

@@ -6,6 +6,8 @@
   --text-secondary: #ececec;
   --highlight-primary: #df49a6;
   --highlight-secondary: #ff7eee;
+  --green-primary: #3b9b37;
+  --green-secondary: #4caf50;
   --bg-primary: #23232e;
   --bg-secondary: #141418;
   --bg-tertiary: #faf7ed;
@@ -153,4 +155,44 @@ button:hover {
   background-color: var(--bg-secondary);
   padding: 10px;
   transition: padding 300ms ease;
+}
+
+/* Cards section styling */
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 20rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: box-shadow 300ms ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 300ms ease;
+}
+
+.card-icon {
+  font-size: 2rem;
+  max-height: 5rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  text-align: center;
 }

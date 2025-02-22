@@ -34,7 +34,8 @@ const { isLoggedIn, handleSignOut } = useAuth();
         <!-- Dashboard -->
         <li class="nav-item">
           <router-link to="/dashboard" class="nav-link">
-            <svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-dashboard" transform="matrix(1.2, 0, 0, 1.2, 0, 0)">
+            <svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-dashboard"
+              transform="matrix(1.2, 0, 0, 1.2, 0, 0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
@@ -58,7 +59,7 @@ const { isLoggedIn, handleSignOut } = useAuth();
 
         <!-- Health -->
         <li class="nav-item">
-          <a href="#" @click.prevent="scrollToHealth" class="nav-link">
+          <router-link to="/health" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -69,12 +70,12 @@ const { isLoggedIn, handleSignOut } = useAuth();
               </g>
             </svg>
             <span class="link-text">Health</span>
-          </a>
+          </router-link>
         </li>
 
         <!-- Quests -->
         <li class="nav-item">
-          <a href="#" @click.prevent="scrollToQuests" class="nav-link">
+          <router-link to="/quests" class="nav-link">
             <svg fill="var(--svg-nav)" viewBox="0 -336 1557 1557" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -90,12 +91,12 @@ const { isLoggedIn, handleSignOut } = useAuth();
               </g>
             </svg>
             <span class="link-text">Quests</span>
-          </a>
+          </router-link>
         </li>
 
         <!-- Shop -->
         <li class="nav-item">
-          <a href="#" @click.prevent="scrollToShop" class="nav-link">
+          <router-link to="/shop" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -109,12 +110,12 @@ const { isLoggedIn, handleSignOut } = useAuth();
               </g>
             </svg>
             <span class="link-text">Shop</span>
-          </a>
+          </router-link>
         </li>
 
         <!-- Badges -->
         <li class="nav-item">
-          <a href="#" @click.prevent="scrollToBadges" class="nav-link">
+          <router-link to="/badges" class="nav-link">
             <svg fill="var(--svg-nav)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -125,12 +126,12 @@ const { isLoggedIn, handleSignOut } = useAuth();
               </g>
             </svg>
             <span class="link-text">Badges</span>
-          </a>
+          </router-link>
         </li>
 
         <!-- Leaderboard -->
         <li class="nav-item">
-          <a href="#" @click.prevent="scrollToLeaderboard" class="nav-link">
+          <router-link to="/leaderboard" class="nav-link">
             <svg fill="var(--svg-nav)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -141,7 +142,7 @@ const { isLoggedIn, handleSignOut } = useAuth();
               </g>
             </svg>
             <span class="link-text">Leaderboard</span>
-          </a>
+          </router-link>
         </li>
 
         <!-- Profile -->
@@ -174,7 +175,8 @@ const { isLoggedIn, handleSignOut } = useAuth();
         <!-- Log in -->
         <li class="nav-item" v-if="!isLoggedIn">
           <router-link to="/sign-in" class="nav-link">
-            <svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1.5, 0, 0, 1.5, 0, 0)">
+            <svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+              transform="matrix(1.5, 0, 0, 1.5, 0, 0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">

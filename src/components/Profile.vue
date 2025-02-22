@@ -200,7 +200,7 @@ h1 {
 
 .progress {
   height: 100%;
-  background-color: #4caf50;
+  background-color: var(--green-secondary);
   border-radius: 10px;
   transition: width 300ms ease;
 }

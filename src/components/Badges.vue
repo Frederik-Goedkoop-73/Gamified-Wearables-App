@@ -50,10 +50,10 @@ const badges = [
 
             <hr>
 
-            <div class="badge-list">
-                <div v-for="(badges, index) in badges" :key="index" class="badge">
+            <div class="cards">
+                <div v-for="(badges, index) in badges" :key="index" class="card">
                     <svg fill="var(--bg-primary)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        class="badge-icon">
+                        class="card-icon">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -62,7 +62,7 @@ const badges = [
                             </path>
                         </g>
                     </svg>
-                    <div class="badge-text">{{ badges.text }}</div>
+                    <div class="card-text">{{ badges.text }}</div>
                 </div>
             </div>
 
@@ -71,10 +71,9 @@ const badges = [
 </template>
 
 <style scoped>
-.badge-list {
+/* .badge-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* Adjust to fit your layout */
     gap: 20px;
     padding: 20px;
 }
@@ -87,16 +86,5 @@ const badges = [
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.badge-icon {
-    font-size: 2rem;
-    max-height: 5rem;
-    margin-bottom: 10px;
-}
-
-.badge-text {
-    font-size: 1rem;
-    text-align: center;
-}
+} */
 </style>
