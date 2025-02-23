@@ -15,7 +15,10 @@
   --transition-speed: 600ms;
   --coins: #efc800;
   --svg-nav: #f1ede7;
+
+  overflow-x: hidden; /* Removes horizontal scrollbar when route animating */
 }
+
 
 body {
   color: black;

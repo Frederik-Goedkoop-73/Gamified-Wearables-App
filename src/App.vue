@@ -3,21 +3,16 @@ import Header from './components/Header.vue';
 import Navbar from './components/Navbar.vue';
 import { useAuth } from './composables/UseAuth';
 
-const { isLoggedIn, handleSignOut } = useAuth();
+const { isLoggedIn } = useAuth();
 
 </script>
 
 <template>
   <Header UserName="User123" v-if="isLoggedIn" />
-<!--   <router-view v-slot="{ Component }">
-    <Transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </Transition>
-  </router-view> -->
 
-    <router-view v-slot="{ Component }"> 
-    <transition enter-active-class="animate__animated animate__fadeInLeft"
-      leave-active-class="animate__animated animate__fadeOutRight" mode="out-in">
+  <router-view v-slot="{ Component }">
+    <transition enter-active-class="animate__animated animate__fadeInUp animate__faster"
+      leave-active-class="animate__animated animate__fadeOutDown animate__faster" mode="out-in">
       <component :is="Component" />
     </transition>
   </router-view>
@@ -51,14 +46,4 @@ nav div {
   color: var(--highlight-primary);
 }
 
-/* Transitions of pages - only fade no direction*/
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 300ms ease-out;
-}
 </style>

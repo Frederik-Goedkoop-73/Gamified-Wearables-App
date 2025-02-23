@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
         if (getAuth().currentUser) {
             next();
         } else {
-            alert("Please login before entering this page :D");
+            //alert("Please login before entering this page :D");
             next("/");
         }
     } else {

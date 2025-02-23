@@ -18,7 +18,7 @@ const { isLoggedIn, handleSignOut } = useAuth();
             <span class="link-text logo-text">KUL</span>
             <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img"
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x svg-change-fill">
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x">
               <g class="fa-group">
                 <path fill="currentColor"
                   d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
@@ -293,14 +293,15 @@ section {
 .nav-link.router-link-active {
   filter: grayscale(0%) opacity(1);
 
-  .svg-change-fill, .svg-change-fill path {
+  .svg-change-fill, 
+  .svg-change-fill path {
     fill: var(--highlight-secondary);
-    transition: 300ms ease;
+    transition: fill 300ms ease; /* Needs to be 600ms otherwise navbar unfolds too fast */
   }
 
   .svg-dashboard path {
     stroke: var(--highlight-secondary);
-    transition: 300ms ease;
+    transition: stroke 300ms ease;
   }
 }
 
