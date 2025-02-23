@@ -9,7 +9,20 @@ const { isLoggedIn, handleSignOut } = useAuth();
 
 <template>
   <Header UserName="User123" v-if="isLoggedIn" />
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <Transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </router-view>
+
+  <!-- Try animating
+    <router-view v-slot="{ Component }"> 
+    <transition enter-active-class="animate_animated animate_fadeInLeft"
+      leave-active-class="animate_animated animate_fadeOutLeft" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view> -->
+
   <Navbar v-if="isLoggedIn" />
 </template>
 
@@ -35,7 +48,18 @@ div {
 }
 
 nav div {
-  cursor:pointer;
+  cursor: pointer;
   color: var(--highlight-primary);
+}
+
+/* Transitions of pages - only fade no direction*/
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 300ms ease-out;
 }
 </style>
