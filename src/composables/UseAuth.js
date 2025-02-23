@@ -9,7 +9,6 @@ export function useAuth() {
     const email = ref("");
     const password = ref("");
     const username = ref(""); // Main username state
-    const usernameInput = ref(""); // For username input field
 
     const errMsg = ref(null);
     const isLoggedIn = ref(false);
@@ -54,20 +53,42 @@ export function useAuth() {
             console.log("Username saved successfully!");
         } catch (error) {
             console.log("Error saving username:", error);
+            throw error; // Re-throw the error to handle it in the calling function
         }
+
     };
 
     // Register method
     const register = async () => {
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-            const user = userCredential.user;
+            // Check if username exists, if not, prompt user for it
+            if (username.value.trim() === '') {
+                // Prompt user for username
+                const usernameFromPrompt = prompt("Please input a username:");
+
+                // Handle prompt cancellation or empty input
+                if (usernameInput === null || usernameInput.trim() === '') {
+                    console.log("Username input canceled or empty.");
+                    errMsg.value = "Username is required.";
+                    return; // Exit the function if the prompt is canceled or empty
+                }
+
+                // Update the username ref with the new input
+                username.value = usernameFromPrompt.trim();
+                const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+                const user = userCredential.user;
+            }
 
             // Save the username to Firestore
-            await saveUsernameToFirestore(user, username.value);
+            try {
+                await saveUsernameToFirestore(user, username.value);
+                console.log("Succesfully registered!");
+                router.push("/dashboard");
+            } catch (error) {
+                console.error("Failed to save username:", error);
+                errMsg.value = "Failed to save username. Please try again.";
+            }
 
-            console.log("Successfully registered!");
-            router.push("/dashboard");
         } catch (error) {
             console.log(error.code);
             switch (error.code) {
@@ -81,7 +102,7 @@ export function useAuth() {
                     errMsg.value = "Missing password";
                     break;
                 default:
-                    errMsg.value = "Please fill in fields";
+                    errMsg.value = "Please fill in all fields";
             }
         }
     };
@@ -99,17 +120,22 @@ export function useAuth() {
 
             if (!fetchedUsername) {
                 // Prompt user for username
-                usernameInput.value = prompt("Please input a username:");
-                if (usernameInput.value) {
-                    await saveUsernameToFirestore(user, usernameInput.value); // Save username
-                    router.push("/dashboard");
-                } else {
-                    console.log("Username iinput canceled.");
+                const usernameFromPrompt = prompt("Please input a username:");
+
+                // Handle prompt cancellation or emptu input
+                if (usernameFromPrompt === null || usernameFromPrompt.trim() === '') {
+                    console.log("Username input canceled or empty.");
+                    errMsg.value = "Username is required.";
+                    return; // Exit the function if the prompt is canceled or empty
                 }
-            } else {
-                userStore.setUsername(fetchedUsername);
-                router.push("/dashboard");
+
+                // Save the username to Firestore
+                await saveUsernameToFirestore(user, usernameFromPrompt.trim());
             }
+
+            // Redirect to dashboard
+            router.push("/dashboard");
+
         } catch (error) {
             console.log(error.message);
             errMsg.value = error.message;
@@ -159,7 +185,7 @@ export function useAuth() {
                 const fetchedUsername = await fetchUsernameFromFirestore(user);
                 if (fetchedUsername) {
                     userStore.setUsername(fetchedUsername);
-                }  else {
+                } else {
                     userStore.setUsername("Anonymous");
                 }
                 isLoggedIn.value = true;
@@ -174,7 +200,6 @@ export function useAuth() {
         email,
         password,
         username,
-        usernameInput,
         errMsg,
         isLoggedIn,
         login,
