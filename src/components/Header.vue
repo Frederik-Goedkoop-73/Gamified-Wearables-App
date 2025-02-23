@@ -2,11 +2,13 @@
 import { useXPStore } from '../stores/xpStore';
 import { useStreakStore } from '../stores/streakStore';
 import { useCoinStore } from '../stores/coinStore'
+import { useUserStore } from '../stores/userStore';
 
 // Initialise the Pinia store
 const xpStore = useXPStore();
 const streakStore = useStreakStore();
 const coinStore = useCoinStore();
+const userStore = useUserStore();
 
 defineProps({
     UserName: String,
@@ -18,7 +20,7 @@ defineProps({
         <div class="header-top">
             <div class="empty-flex"></div>
             <div class="username">
-                <h1>{{ UserName }}</h1>
+                <h1>{{ userStore.username }}</h1>
             </div>
             <div class="streak-currency">
                 <!-- v-if: Streak icon must be color:var(--text-primary) when inactive and var(--highlight-primary) when active-->
