@@ -64,6 +64,9 @@ export function useAuth() {
 
     // Register method
     const register = async () => {
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        const user = userCredential.user;
+
         try {
             // Check if username exists, if not, prompt user for it
             if (username.value.trim() === '') {
@@ -71,7 +74,7 @@ export function useAuth() {
                 const usernameFromPrompt = prompt("Please input a username:");
 
                 // Handle prompt cancellation or empty input
-                if (usernameInput === null || usernameInput.trim() === '') {
+                if (usernameFromPrompt === null || usernameFromPrompt.trim() === '') {
                     console.log("Username input canceled or empty.");
                     errMsg.value = "Username is required.";
                     return; // Exit the function if the prompt is canceled or empty
@@ -79,8 +82,7 @@ export function useAuth() {
 
                 // Update the username ref with the new input
                 username.value = usernameFromPrompt.trim();
-                const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-                const user = userCredential.user;
+
             }
 
             // Save the username to Firestore
