@@ -2,14 +2,149 @@ import { ref, onMounted } from 'vue';
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { useRouter } from 'vue-router';
 
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { useUserStore } from '../stores/userStore';
+
+import { useXPStore } from '../stores/xpStore';
+import { useStreakStore } from '../stores/streakStore';
+import { useCoinStore } from '../stores/coinStore';
+
 export function useAuth() {
     const email = ref("");
     const password = ref("");
+    const username = ref(""); // Main username state
+
     const errMsg = ref(null);
     const isLoggedIn = ref(false);
 
     const router = useRouter();
     const auth = getAuth();
+
+    const userStore = useUserStore();
+
+    // Store username in Pinia
+    const fetchUsernameFromFirestore = async (user) => {
+        try {
+            const db = getFirestore();
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                return docSnap.data().username;
+            } else {
+                console.log("No such document!");
+                return null; // No username found
+            }
+        } catch (error) {
+            console.log("Error fetching username:", error);
+            return null;
+        }
+    };
+
+    // Save or update username in Firestore and Pinia
+    const saveUsernameToFirestore = async (user, username) => {
+        try {
+            const db = getFirestore();
+            const docRef = doc(db, "users", user.uid);
+
+            await setDoc((docRef), {
+                email: user.email,
+                username: username // Save the new username
+            }, { merge: true });
+
+            // Update the Pinia store
+            userStore.setUsername(username);
+            console.log("Username saved successfully!");
+        } catch (error) {
+            console.log("Error saving username:", error);
+            throw error; // Re-throw the error to handle it in the calling function
+        }
+
+    };
+
+    // Register method
+    const register = async () => {
+        try {
+            // Check if username exists, if not, prompt user for it
+            if (username.value.trim() === '') {
+                // Prompt user for username
+                const usernameFromPrompt = prompt("Please input a username:");
+
+                // Handle prompt cancellation or empty input
+                if (usernameInput === null || usernameInput.trim() === '') {
+                    console.log("Username input canceled or empty.");
+                    errMsg.value = "Username is required.";
+                    return; // Exit the function if the prompt is canceled or empty
+                }
+
+                // Update the username ref with the new input
+                username.value = usernameFromPrompt.trim();
+                const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+                const user = userCredential.user;
+            }
+
+            // Save the username to Firestore
+            try {
+                await saveUsernameToFirestore(user, username.value);
+                console.log("Succesfully registered!");
+                router.push("/dashboard");
+            } catch (error) {
+                console.error("Failed to save username:", error);
+                errMsg.value = "Failed to save username. Please try again.";
+            }
+
+        } catch (error) {
+            console.log(error.code);
+            switch (error.code) {
+                case "auth/invalid-email":
+                    errMsg.value = "Invalid email";
+                    break;
+                case "auth/weak-password":
+                    errMsg.value = "Weak password: Password should contain at least 6 characters";
+                    break;
+                case "auth/missing-password":
+                    errMsg.value = "Missing password";
+                    break;
+                default:
+                    errMsg.value = "Please fill in all fields";
+            }
+        }
+    };
+
+
+    // Sign in with Google
+    const signInWithGoogle = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // Check if username exists, if not, prompt user for it
+            const fetchedUsername = await fetchUsernameFromFirestore(user);
+
+            if (!fetchedUsername) {
+                // Prompt user for username
+                const usernameFromPrompt = prompt("Please input a username:");
+
+                // Handle prompt cancellation or emptu input
+                if (usernameFromPrompt === null || usernameFromPrompt.trim() === '') {
+                    console.log("Username input canceled or empty.");
+                    errMsg.value = "Username is required.";
+                    return; // Exit the function if the prompt is canceled or empty
+                }
+
+                // Save the username to Firestore
+                await saveUsernameToFirestore(user, usernameFromPrompt.trim());
+            }
+
+            // Redirect to dashboard
+            router.push("/dashboard");
+
+        } catch (error) {
+            console.log(error.message);
+            errMsg.value = error.message;
+        }
+    };
 
     // Login method
     const login = async () => {
@@ -35,31 +170,6 @@ export function useAuth() {
         }
     };
 
-    // Register method
-    const register = async () => {
-        try {
-            await createUserWithEmailAndPassword(auth, email.value, password.value);
-            console.log("Successfully registered!");
-            router.push("/dashboard");
-        } catch (error) {
-            console.log(error.message);
-            errMsg.value = error.message;
-        }
-    };
-
-    // Sign in with Google
-    const signInWithGoogle = async () => {
-        const provider = new GoogleAuthProvider();
-        try {
-            const result = await signInWithPopup(auth, provider);
-            console.log(result.user);
-            router.push("/dashboard");
-        } catch (error) {
-            console.log(error.message);
-            errMsg.value = error.message;
-        }
-    };
-
     // Sign out method
     const handleSignOut = async () => {
         try {
@@ -72,117 +182,47 @@ export function useAuth() {
         }
     };
 
-    // Check for changes to the auth state (user logged in or not)
+    // Listen for authentication state changes
     onMounted(() => {
-        onAuthStateChanged(auth, (user) => {
-            isLoggedIn.value = !!user; // User exists -> logged in
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const fetchedUsername = await fetchUsernameFromFirestore(user);
+                if (fetchedUsername) {
+                    userStore.setUsername(fetchedUsername);
+                } else {
+                    userStore.setUsername("Anonymous");
+                }
+
+                // Fetch xp for the authenticated user
+                const xpStore = useXPStore();
+                await xpStore.fetchXP();
+
+                // Fetch streak for the authenticated user
+                const streakStore = useStreakStore();
+                await streakStore.fetchStreak();
+
+                // Fetch coins for the authenticated user
+                const coinStore = useCoinStore();
+                await coinStore.fetchCoins();
+
+                isLoggedIn.value = true;
+            } else {
+                isLoggedIn.value = false;
+            }
         });
     });
+
 
     return {
         email,
         password,
+        username,
         errMsg,
         isLoggedIn,
         login,
         register,
         signInWithGoogle,
-        handleSignOut
+        handleSignOut,
+        saveUsernameToFirestore,
     };
 }
-
-
-// Old js
-/* // Create register and signin methods
-const login = () => {
-    // need .value because ref()
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-
-        // .then to catch succesful response
-        .then((data) => {
-            console.log("Succesfully loggeed in!");
-
-            console.log(auth.currentUser); // The given account information is accessed here in firebase -> not sure what tutorial meant ??
-
-            router.push("/dashboard"); // Reroute to dashboard page if succesfully registered
-        })
-        .catch((error) => {
-            console.log(error.code);
-            switch (error.code) {
-                case "auth/invalid-email":
-                    errMsg.value = "Invalid email";
-                    break;
-                case "auth/user-not-found":
-                    errMsg.value = "User not found";
-                    break;
-                case "auth/wrong-password":
-                    errMsg.value = "Incorrect password";
-                    break;
-                default:
-                    errMsg.value = "Email or password was incorrect";
-                    break;
-            }
-        })
-};
-
-// Create register and signin methods
-const register = () => {
-    // need .value because ref()
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-
-        // .then to catch succesful response
-        .then((data) => {
-            console.log("Succesfully registered!");
-
-            console.log(auth.currentUser); // The given account information is accessed here in firebase -> not sure what tutorial meant ??
-
-            router.push('/dashboard'); // Reroute to home page if succesfully registered
-        })
-
-        // .catch to catch unsuccesful response
-        .catch((error) => {
-            console.log(error.code);
-            alert(error.message);
-        })
-
-}
-
-const signInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(getAuth(), provider)
-        .then((result) => {
-            console.log(result.user);
-            router.push("/dashboard");
-        })
-        .catch((error) => {
-            console.log(error.message); // Handle error
-        })
-}; */
-
-
-/* Idem App.vue
-import { onMounted, ref } from "vue";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-const isLoggedIn = ref(false);
-
-// We use onMounted hook so we have access to firebase once app is created
-let auth;
-onMounted(() => {
-  auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) { // So if user != null
-      isLoggedIn.value = true;
-    } else {
-      isLoggedIn.value = false;
-    }
-  });
-});
-
-const handleSignOut = () => {
-  signOut(auth).then(() => {
-    router.push("/")
-  });
-};   */

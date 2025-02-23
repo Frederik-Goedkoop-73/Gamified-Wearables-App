@@ -15,7 +15,7 @@ const { isLoggedIn, handleSignOut } = useAuth();
         <!-- KUL logo -->
         <li class="nav-logo">
           <router-link to="/" class="nav-link">
-            <span class="link-text logo-text">KUL</span>
+            <span class="link-text logo-text">HOME</span>
             <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img"
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
               class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x">
@@ -411,40 +411,4 @@ section {
   }
 }
 
-.dark {
-  --text-primary: #b6b6b6;
-  --text-secondary: #ececec;
-  --bg-primary: #23232e;
-  --bg-secondary: #141418;
-}
-
-.light {
-  --text-primary: #1f1f1f;
-  --text-secondary: #000000;
-  --bg-primary: #ffffff;
-  --bg-secondary: #e4e4e4;
-}
-
-.solar {
-  --text-primary: #576e75;
-  --text-secondary: #35535c;
-  --bg-primary: #fdf6e3;
-  --bg-secondary: #f5e5b8;
-}
-
-.theme-icon {
-  display: none;
-}
-
-/* .dark #darkIcon {
-  display: block;
-}
-
-.light #lightIcon {
-  display: block;
-}
-
-.solar #solarIcon {
-  display: block;
-} */
 </style>

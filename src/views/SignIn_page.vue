@@ -1,7 +1,7 @@
 <script setup>
 import { useAuth } from '../composables/UseAuth.js'; // Adjust path as needed
 
-const { email, password, errMsg, login, register, signInWithGoogle, handleSignOut } = useAuth();
+const { email, password, username, errMsg, login, register, signInWithGoogle, handleSignOut } = useAuth();
 </script>
 
 <template>
@@ -11,12 +11,13 @@ const { email, password, errMsg, login, register, signInWithGoogle, handleSignOu
                 <h1>Sign In to an Account</h1>
                 <p><input type="text" placeholder="Email" v-model="email" /></p>
                 <p><input type="password" placeholder="Password" v-model="password" /></p>
-                <p v-if="errMsg">{{ errMsg }}</p>
                 <p><button @click="login">Submit</button></p>
                 <p><button @click="signInWithGoogle">Sign In With Google</button></p>
             </div>
+            <h2 class="to-fix" v-if="errMsg">{{ errMsg }}</h2>
             <div class="grey-border">
                 <h1>Create an Account</h1>
+                <p><input type="text" placeholder="Username" v-model="username" /></p>
                 <p><input type="text" placeholder="Email" v-model="email" /></p>
                 <p><input type="password" placeholder="Password" v-model="password" /></p>
                 <p><button @click="register">Submit</button></p>
@@ -35,7 +36,7 @@ input {
     min-width: 10rem;
 }
 
-div {
+div, .to-fix {
     text-align: center;
 }
 
