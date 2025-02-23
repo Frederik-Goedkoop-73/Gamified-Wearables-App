@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 export const useXPStore = defineStore('xp', {
   state: () => ({
@@ -8,10 +10,67 @@ export const useXPStore = defineStore('xp', {
     leveledUpTo: 0, // Initial level the user leveled up to in one go
   }),
   actions: {
-    // Add XP and update level
-    addXP(xpAmount) {
-      this.xp += xpAmount; // Update the XP state
-      this.updateLevel(); // Call to update level when XP increases
+    // Fetch XP and level from Firestore for the current user
+    async fetchXP() {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (user) {
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+
+        try {
+          const docSnap = await getDoc(userDocRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            this.xp = data.xp || 0; // Update local state with Firestore data
+            this.level = data.level || 1; // Update local state with Firestore data
+          } else {
+            console.log("No such document!");
+            this.xp = 0; // Default to 0 if no document exists
+            this.level = 1; // Default to level 1 if no document exists
+          }
+        } catch (error) {
+          console.error("Error fetching XP:", error);
+        }
+      }
+    },
+
+    // Add XP and update Firestore
+    async addXP(xpAmount) {
+      this.xp += xpAmount; // Update local state
+      this.updateLevel(); // Update level based on new XP
+      await this.saveXPToFirestore(); // Save to Firestore
+    },
+
+    // Reset XP and update Firestore
+    async resetXP() {
+      this.xp = 0; // Reset local state
+      this.level = 1; // Reset local state
+      this.leveledUpTo = 0; // Reset local state
+      this.showPopup = false; // Reset local state
+      await this.saveXPToFirestore(); // Save to Firestore
+    },
+
+    // Save the current XP and level to Firestore
+    async saveXPToFirestore() {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (user) {
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+
+        try {
+          await setDoc(userDocRef, {
+            xp: this.xp, // Save the current XP
+            level: this.level, // Save the current level
+          }, { merge: true }); // Merge with existing document data
+          console.log("XP and level saved to Firestore!");
+        } catch (error) {
+          console.error("Error saving XP and level to Firestore:", error);
+        }
+      }
     },
 
     // Calculate the total XP needed for the next level
@@ -36,13 +95,6 @@ export const useXPStore = defineStore('xp', {
 
     // Close the level-up popup
     closePopup() {
-      this.showPopup = false;
-    },
-
-    resetXP() {
-      this.xp = 0;
-      this.level = 1;
-      this.leveledUpTo = 0;
       this.showPopup = false;
     },
   },

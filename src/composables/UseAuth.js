@@ -5,6 +5,10 @@ import { useRouter } from 'vue-router';
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useUserStore } from '../stores/userStore';
 
+import { useXPStore } from '../stores/xpStore';
+import { useStreakStore } from '../stores/streakStore';
+import { useCoinStore } from '../stores/coinStore';
+
 export function useAuth() {
     const email = ref("");
     const password = ref("");
@@ -188,6 +192,19 @@ export function useAuth() {
                 } else {
                     userStore.setUsername("Anonymous");
                 }
+
+                // Fetch xp for the authenticated user
+                const xpStore = useXPStore();
+                await xpStore.fetchXP();
+
+                // Fetch streak for the authenticated user
+                const streakStore = useStreakStore();
+                await streakStore.fetchStreak();
+
+                // Fetch coins for the authenticated user
+                const coinStore = useCoinStore();
+                await coinStore.fetchCoins();
+
                 isLoggedIn.value = true;
             } else {
                 isLoggedIn.value = false;
