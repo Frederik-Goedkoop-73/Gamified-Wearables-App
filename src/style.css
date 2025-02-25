@@ -2,27 +2,55 @@
 :root {
   font-size: 16px;
   font-family: 'Open sans';
+  /* Initial color scheme
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
+
   --highlight-primary: #df49a6;
   --highlight-secondary: #ff7eee;
+
   --green-primary: #3b9b37;
   --green-secondary: #4caf50;
-  --bg-primary: #23232e;
-  --bg-secondary: #141418;
+
+    --bg-primary: #23232e;
+  --bg-secondary : #141418;
   --bg-tertiary: #faf7ed;
   --bg-quaternary: #fcfbfc;
+
+  --svg-nav: #f1ede7; */
+
+  --text-primary: #D3D9D4;
+  --text-secondary: #ececec;
+
+  --highlight-primary: #5ce2d9;
+  --highlight-secondary: #45A29E;
+
+  --green-primary: #27a222;
+  --green-secondary: #38d03d;
+
+  --bg-primary: #212A31;
+  --bg-secondary: #2E3944;
+  --bg-tertiary: #dae6eb;
+  --bg-quaternary: #a4c8d7;
+
   --transition-speed: 600ms;
   --coins: #efc800;
-  --svg-nav: #f1ede7;
+  --svg-nav: #c5e8e5;
 
-  overflow-x: hidden; /* Removes horizontal scrollbar when route animating */
+  overflow-x: hidden;
+  /* Removes horizontal scrollbar when route animating */
 }
 
+/* h1,
+h2,
+p {
+  color: white;
+} */
 
 body {
   color: black;
-  background-color: var(--bg-quaternary);
+  /* background-color: var(--bg-quaternary); */
+  background: linear-gradient(0.25turn, var(--svg-nav), var(--bg-quaternary),  var(--svg-nav));
   margin: 0;
   padding: 0;
   text-align: justify;
@@ -43,18 +71,20 @@ body::-webkit-scrollbar-thumb {
 
 section {
   margin-left: 5rem;
-  padding: 3rem; /* Was 1rem initially 13/2/25 */
+  padding: 3rem;
+  /* Was 1rem initially 13/2/25 */
 }
 
 .grey-border {
-  border: solid, medium, var(--bg-primary); 
+  border: solid, medium, var(--bg-primary);
   border-radius: 10px;
   padding: 10px;
   margin-left: -10px;
   margin-right: -10px;
   margin-bottom: 10px;
   overflow: auto;
-  background-color: var(--bg-tertiary); /* rgba(226, 218, 190, 0.5); */
+  background-color: var(--bg-tertiary);
+  /* rgba(226, 218, 190, 0.5); */
 }
 
 .text-center {
@@ -121,7 +151,7 @@ a {
   width: 4rem;
   min-width: 4rem;
   height: 4rem;
-  min-height: 4rem; 
+  min-height: 4rem;
 }
 
 /* Most ul's are for flex -> specify for points with class="disc-list" */
@@ -136,7 +166,8 @@ ul {
 /* Small screens */
 @media only screen and (max-width: 600px) {
   section {
-    margin-left: 0; /* Fixes empty left margin on screen */
+    margin-left: 0;
+    /* Fixes empty left margin on screen */
   }
 }
 

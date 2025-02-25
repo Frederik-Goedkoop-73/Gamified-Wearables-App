@@ -11,9 +11,9 @@ const toggleContentVisisbility = () => {
 };
 
 // Function to unfold content when navigating from navbar
-const unfoldContent = () => {
+/* const unfoldContent = () => {
     isContentVisible = true;
-};
+}; */
 
 </script>
 
