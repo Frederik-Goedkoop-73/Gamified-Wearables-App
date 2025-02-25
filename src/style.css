@@ -51,6 +51,7 @@ body {
   color: black;
   /* background-color: var(--bg-quaternary); */
   background: linear-gradient(0.25turn, var(--svg-nav), var(--bg-quaternary),  var(--svg-nav));
+  /* background: linear-gradient(0.25turn, var(--bg-secondary), rgb(27, 34, 38),  var(--bg-primary)); */
   margin: 0;
   padding: 0;
   text-align: justify;
@@ -83,7 +84,8 @@ section {
   margin-right: -10px;
   margin-bottom: 10px;
   overflow: auto;
-  background-color: var(--bg-tertiary);
+  background: var(--bg-tertiary);
+  /* background: radial-gradient(var(--bg-tertiary), var(--bg-quaternary)); */
   /* rgba(226, 218, 190, 0.5); */
 }
 
