@@ -46,6 +46,10 @@ const router = createRouter({
                 requiresAuth: true,
             }
         },
+
+        {
+            path: "/terms-of-service", component: () => import("../views/TermsOfService_page.vue")
+        }
     ]
 });
 

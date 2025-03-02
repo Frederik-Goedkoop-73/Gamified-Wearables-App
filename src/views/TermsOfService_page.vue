@@ -1,0 +1,238 @@
+<script setup>
+import { useAuth } from '../composables/UseAuth';
+
+const { isLoggedIn } = useAuth();
+</script>
+
+<template>
+    <main>
+        <section>
+            <div class="margin-lg">
+                <div v-if="!isLoggedIn" class="btn-back">
+                    <router-link to="/">
+                        <button class="cta-button">Go back to homepage</button>
+                    </router-link>
+                </div>
+                <h1>Terms of Service</h1>
+                <p><strong>Latest revision: </strong> March 3rd 2025</p>
+                <p><strong>Active as of: </strong> April 1st 2025</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>
+                    By using the Website, you agree to comply with and be legally bound by these Terms. These Terms
+                    govern
+                    your access to and use of the Website, including any content, functionality, and services offered on
+                    or
+                    through the Website.
+                </p>
+
+                <h2>2. Description of Service</h2>
+                <p>
+                    The Website provides a platform for participants to engage in a fitness study. The study involves
+                    the
+                    use of a Fitbit tracker to monitor fitness activities and a gamified website to track progress,
+                    complete
+                    surveys, and earn experience points (XP). The Website is designed to help participants achieve their
+                    fitness goals through motivation, engagement, and feedback.
+                </p>
+
+                <h2>3. Eligibility</h2>
+                <p>
+                    To use the Website, you must be at least 18 years old and capable of forming a binding contract. By
+                    using the Website, you represent and warrant that you meet these eligibility requirements.
+                </p>
+
+                <h2>4. User Responsibilities</h2>
+                <p>
+                    By participating in the study and using the Website, you agree to:
+                </p>
+                <ul class="disc-list">
+                    <li>Provide accurate and complete information in all surveys, including the initial survey, weekly
+                        check-ins, and final survey.</li>
+                    <li>Use the Fitbit tracker and Website in accordance with the instructions provided.</li>
+                    <li>Notify us of any issues or discomfort experienced while using the Fitbit tracker or Website.
+                    </li>
+                    <li>Comply with all applicable laws and regulations.</li>
+                </ul>
+
+                <h2>5. Privacy Policy</h2>
+                <p>
+                    Your use of the Website is also governed by our Privacy Policy, which explains how we collect, use,
+                    and
+                    protect your personal information. By using the Website, you consent to the collection and use of
+                    your
+                    information as outlined in the Privacy Policy.
+                </p>
+
+                <h2>6. Fitbit API Integration</h2>
+                <p>
+                    The Website integrates with the Fitbit API to collect and display fitness data from your Fitbit
+                    tracker.
+                    By using the Website, you authorize us to access and use your Fitbit data in accordance with these
+                    Terms, our Privacy Policy, and Fitbit's Platform Terms of Service.
+                </p>
+
+                <h3>6.1. Fitbit Account</h3>
+                <p>
+                    To use the Fitbit API integration, you must have a valid Fitbit account and authorize the Website to
+                    access your Fitbit data. You are responsible for maintaining the confidentiality of your Fitbit
+                    account
+                    credentials and for all activities that occur under your account.
+                </p>
+
+                <h3>6.2. Data Usage</h3>
+                <p>
+                    We will use your Fitbit data solely for the purposes of the study, including tracking your fitness
+                    activities, providing feedback, and generating reports. We will not share your Fitbit data with
+                    third
+                    parties without your consent, except as required by law or as necessary to provide the services
+                    outlined
+                    in these Terms.
+                </p>
+
+                <h4>6.2.1. Compliance with Fitbit's Terms</h4>
+                <ul class="disc-list">
+                    <li>We will only access Fitbit user data with explicit user consent, and we will not use the Fitbit
+                        API
+                        to access data beyond the scope of the permissions granted by the user.</li>
+                    <li>We will not use Fitbit data for any unlawful purpose or in violation of Fitbit's Platform Terms
+                        of
+                        Service.</li>
+                    <li>We will not sell, rent, or lease Fitbit user data to third parties.</li>
+                    <li>We will not use Fitbit data for advertising or marketing purposes without explicit user consent.
+                    </li>
+                </ul>
+
+                <h3>6.3. Data Security</h3>
+                <p>
+                    We will implement and maintain appropriate technical and organizational measures to protect Fitbit
+                    user
+                    data from unauthorized access, disclosure, or misuse. In the event of a data breach involving Fitbit
+                    user data, we will notify Fitbit and affected users promptly and take appropriate steps to mitigate
+                    the
+                    breach.
+                </p>
+
+                <h3>6.4. Data Retention</h3>
+                <p>
+                    We will retain Fitbit user data only for as long as necessary to fulfill the purposes outlined in
+                    these
+                    Terms or as required by law. Upon request, we will delete or anonymize Fitbit user data in
+                    accordance
+                    with Fitbit's Platform Terms of Service.
+                </p>
+
+                <h2>7. Intellectual Property</h2>
+                <p>
+                    All content on the Website, including text, graphics, logos, and software, is the property of the
+                    University of Leuven (KUL) or its licensors and is protected by intellectual property laws. You may
+                    not
+                    reproduce,
+                    distribute, or create derivative works from any content on the Website without our prior written
+                    consent.
+                </p>
+
+                <h3>7.1. Fitbit Intellectual Property</h3>
+                <p>
+                    The Fitbit API, Fitbit trademarks, and any related content are the intellectual property of Fitbit,
+                    Inc.
+                    You may not use Fitbit's intellectual property without Fitbit's prior written consent. You agree not
+                    to
+                    reverse engineer, decompile, or disassemble the Fitbit API or any Fitbit software.
+                </p>
+
+                <h2>8. Limitation of Liability</h2>
+                <p>
+                    To the fullest extent permitted by law, the University of Leuven (KUL) shall not be liable for any
+                    indirect,
+                    incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether
+                    incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses,
+                    resulting from:
+                </p>
+                <ul class="disc-list">
+                    <li>Your use or inability to use the Website.</li>
+                    <li>Any unauthorized access to or use of our servers and/or any personal information stored therein.
+                    </li>
+                    <li>Any interruption or cessation of transmission to or from the Website.</li>
+                    <li>Any bugs, viruses, or other harmful code that may be transmitted to or through the Website.</li>
+                </ul>
+
+                <h3>8.1. Fitbit's Limitation of Liability</h3>
+                <p>
+                    Fitbit is not responsible for any issues arising from your use of the Fitbit API or Fitbit data on
+                    the
+                    Website. Any disputes related to Fitbit data or the Fitbit API must be resolved directly with
+                    Fitbit.
+                </p>
+
+                <h2>9. Termination</h2>
+                <p>
+                    We reserve the right to terminate or suspend your access to the Website at any time, without notice,
+                    for
+                    any reason, including but not limited to a breach of these Terms.
+                </p>
+
+                <h3>9.1. Fitbit API Access</h3>
+                <p>
+                    Fitbit reserves the right to suspend or terminate your access to the Fitbit API at any time, with or
+                    without cause. If Fitbit terminates your access to the API, we will no longer be able to provide
+                    services that rely on Fitbit data.
+                </p>
+
+                <h2>10. Changes to Terms</h2>
+                <p>
+                    We may update these Terms from time to time. If we make material changes, we will notify you by
+                    posting
+                    the updated Terms on the Website. Your continued use of the Website after the changes become
+                    effective
+                    constitutes your acceptance of the revised Terms.
+                </p>
+
+                <h3>10.1. Fitbit's Right to Modify</h3>
+                <p>
+                    Fitbit may modify its Platform Terms of Service at any time. You are responsible for regularly
+                    reviewing
+                    Fitbit's terms to ensure compliance.
+                </p>
+
+                <h2>11. Governing Law</h2>
+                <p>
+                    These Terms shall be governed by and construed in accordance with the laws of Belgium,
+                    without regard to its conflict of law principles.
+                </p>
+
+                <h3>11.1. Fitbit's Governing Law</h3>
+                <p>
+                    Any disputes related to the Fitbit API or Fitbit data will be governed by Fitbit's Platform Terms of
+                    Service, which are governed by the laws of the State of California, USA.
+                </p>
+
+                <h2>12. Contact Information</h2>
+                <p>
+                    If you have any questions about these Terms, please contact us at:
+                </p>
+                <p>
+                    University of Leuven<br>
+                    Biosystemen - Afdeling Dier en Mens, Kasteelpark Arenberg 30, 3001 Leuven <br>
+                    <a
+                        href="mailto:Frederik.Goedkoop@student.uantwerpen.be">Frederik.Goedkoop@student.uantwerpen.be</a><br>
+                    <a href="tel:+32474547625">+32 4 74 54 76 25</a>
+                </p>
+            </div>
+        </section>
+    </main>
+</template>
+
+<style scoped>
+section {
+    padding-top: 1rem;
+}
+
+.margin-lg {
+    margin: 0% 5% 0 5%;
+}
+
+h1 {
+    font-size: xx-large;
+}
+</style>

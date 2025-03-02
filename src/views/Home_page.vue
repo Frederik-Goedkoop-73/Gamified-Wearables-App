@@ -104,6 +104,12 @@ const { isLoggedIn } = useAuth();
                 </router-link>
             </div>
         </div>
+
+        <div class="cta-section">
+                <router-link to="/terms-of-service">
+                    <button class="cta-button">TOS</button>
+                </router-link>
+            </div>
     </section>
 </template>
 
