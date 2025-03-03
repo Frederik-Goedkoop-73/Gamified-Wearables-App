@@ -14,12 +14,11 @@ const { isLoggedIn } = useAuth();
                     </router-link>
                 </div>
                 <h1>Terms of Service</h1>
-                <p><strong>Latest revision: </strong> March 3rd 2025</p>
-                <p><strong>Active as of: </strong> April 1st 2025</p>
+                <p><strong>Last Updated: </strong> March 3rd 2025</p>
 
                 <h2>1. Acceptance of Terms</h2>
                 <p>
-                    By using the Website, you agree to comply with and be legally bound by these Terms. These Terms
+                    By using the KUL Health Monitor (the "Website"), you agree to comply with and be legally bound by these Terms. These Terms
                     govern
                     your access to and use of the Website, including any content, functionality, and services offered on
                     or
@@ -234,5 +233,10 @@ section {
 
 h1 {
     font-size: xx-large;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
 }
 </style>
